@@ -1,6 +1,7 @@
 # for bash 
 alias llh="ll -h"
 alias llrt="ll -rt"
+alias sai="sudo apt-get install"
 
 # tmux
 alias tmux="tmux -2" 
