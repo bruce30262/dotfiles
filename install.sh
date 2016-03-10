@@ -1,22 +1,20 @@
 #!/bin/sh 
 
+cur_path=$(dirname $0)
+
 # install vim
 echo "installing vim..."
 sudo apt-get install -y vim
-
-# configure my vim
 echo "setting vim..."
-cd ~/ && mkdir -p ~/.vim && cd ~/.vim 
-git clone https://github.com/bruce30262/vim . 
-git submodule update --init # update submodule
-git submodule update --remote --merge
-ln -s ~/.vim/.vimrc ~/.vimrc
+sh $cur_path/set_vim.sh
+echo "done setting vim."
 
 # install ruby
 echo "installing ruby..."
 sudo apt-get install -y ruby
 
 # run the other setup via a ruby script
-ruby ~/dotfiles/install.rb
+echo "running setup ruby script..."
+ruby $cur_path/install.rb
 
 echo "All done!"
