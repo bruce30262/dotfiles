@@ -1,0 +1,6 @@
+# for bash 
+alias llh="ll -h"
+alias llrt="ll -rt"
+
+# tmux
+alias tmux="tmux -2" 
