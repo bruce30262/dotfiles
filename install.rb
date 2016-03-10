@@ -52,7 +52,7 @@ end
 
 ########### main function #############
 
-#install_tmux()
-#install_NOT()
-#set_bashrc()
+install_tmux()
+install_NOT()
+set_bashrc()
 set_git()

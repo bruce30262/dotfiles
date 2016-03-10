@@ -1,41 +1,41 @@
 [user]
-	name = Bruce Chen
-	email = bruce30262@gmail.com
-	
+    name = Bruce Chen
+    email = bruce30262@gmail.com
+    
 [core]
-	excludesfile = ~/dotfiles/git/.gitignore
-	
+    excludesfile = ~/dotfiles/git/.gitignore
+    
 [github]
-	user = bruce30262
-	email = bruce30262@gmail.com
-	
+    user = bruce30262
+    email = bruce30262@gmail.com
+    
 [alias]
     a = add -A
-	ai = add -i
-	###############
-	d = diff
-	###############
-	b = branch
-	ba = branch -a
-	###############
-	cm = commit
-	cma = commit --amend
-	###############
-	co = checkout
-	###############
-	f = fetch
-	fu = fetch upstream
-	###############
-	m = merge
-	###############
-	ps = push
-	psa = push --all
-	###############
-	pl = pull
-	###############
-	r = remote
-	rv = remote -v
-	###############
-	s = status
-	su == status -u
-	###############
+    ai = add -i
+    ###############
+    d = diff
+    ###############
+    b = branch
+    ba = branch -a
+    ###############
+    cm = commit
+    cma = commit --amend
+    ###############
+    co = checkout
+    ###############
+    f = fetch
+    fu = fetch upstream
+    ###############
+    m = merge
+    ###############
+    ps = push
+    psa = push --all
+    ###############
+    pl = pull
+    ###############
+    r = remote
+    rv = remote -v
+    ###############
+    s = status
+    su == status -u
+    ###############
