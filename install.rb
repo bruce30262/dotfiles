@@ -23,7 +23,6 @@ def set_bashrc()
     puts "setting .bashrc..."
     system("rm -f ~/.bashrc")
     system("ln -s #{$CUR_DIR}/bash/.bashrc ~/.bashrc")
-    system("bash -c 'source ~/.bashrc'")
     puts "done setting .bashrc"
 end
 

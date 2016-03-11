@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 cd ~/ && mkdir -p ~/.vim && cd ~/.vim 
 git clone https://github.com/bruce30262/vim . 
