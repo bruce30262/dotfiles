@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-cur_dir=$(dirname $(readlink -f $0))
+cur_dir=$(dirname $(readlink -f $BASH_SOURCE))
 
 # install vim
 echo "installing vim..."
