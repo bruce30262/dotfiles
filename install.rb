@@ -27,9 +27,8 @@ def set_bashrc()
     puts "done setting .bashrc"
 end
 
-def gen_git_sshkey()
+def gen_git_sshkey(my_email)
     key_file = "#{Dir.home}/.ssh/id_rsa.pub"
-    my_email = "bruce30262@gmail.com"
     
     if File.exist?key_file # ssh key already exist
         puts "ssh key already exist on this machine."
@@ -46,7 +45,7 @@ def set_git()
     puts "setting .gitconfig..."
     system("ln -s #{$CUR_DIR}/git/.gitconfig ~/.gitconfig")
     puts "generating ssh key for git..."
-    gen_git_sshkey()
+    gen_git_sshkey("bruce30262@gmail.com")
     puts "done setting git."
 end
 
