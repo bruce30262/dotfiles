@@ -15,7 +15,7 @@ sudo apt-get install -y ruby
 
 # run the other setup via a ruby script
 echo "running setup ruby script..."
-ruby $cur_dir/install.rb
+ruby $cur_dir/install.rb --all
 
 echo "All done!"
 echo "source ~/.bashrc to load the latest bashrc setting."
