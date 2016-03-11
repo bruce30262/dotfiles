@@ -8,3 +8,6 @@ for file in $cur_dir/../aliases/{,.}*.alias;
 do
     source "$file"
 done
+
+# source .bashrc.local for local bash setting (if the file exists)
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
