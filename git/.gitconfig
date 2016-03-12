@@ -37,5 +37,12 @@
     rv = remote -v
     ###############
     s = status
-    su == status -u
+    su = status -u
     ###############
+
+    # change a git repo's remote url from https to ssh (for github only)
+    # have to use 2 back slash because the first back slash will read by .gitconfig
+    github-h2s = "!new_url=$(git rv | awk '{print $2}' | head -1 | sed 's/https:\\/\\/github.com\\//git@github.com:/g') && git remote set-url origin $new_url && echo 'git remote -v:' && git rv"
+    # change a git repo's remote url from ssh to https (for github only)
+    # have to use 2 back slash because the first back slash will read by .gitconfig
+    github-s2h = "!new_url=$(git rv | awk '{print $2}' | head -1 | sed 's/git@github.com:/https:\\/\\/github.com\\//g') && git remote set-url origin $new_url && echo 'git remote -v:' && git rv"
