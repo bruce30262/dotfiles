@@ -10,7 +10,7 @@ module Setup
         puts "installing tmux..."
         system("sudo apt-get install -y tmux")
         puts "setting .tmux.conf..."
-        system("ln -s #{$CUR_DIR}/.tmux.conf ~/.tmux.conf")
+        system("ln -sf #{$CUR_DIR}/.tmux.conf ~/.tmux.conf")
         puts "setting tmux done."
     end
 
@@ -23,8 +23,7 @@ module Setup
 
     def set_bashrc()
         puts "setting .bashrc..."
-        system("rm -f ~/.bashrc")
-        system("ln -s #{$CUR_DIR}/bash/.bashrc ~/.bashrc")
+        system("ln -sf #{$CUR_DIR}/bash/.bashrc ~/.bashrc")
         puts "done setting .bashrc"
     end
 
@@ -41,7 +40,7 @@ module Setup
         
         puts "setting git..."
         puts "setting .gitconfig..."
-        system("ln -s #{$CUR_DIR}/git/.gitconfig ~/.gitconfig")
+        system("ln -sf #{$CUR_DIR}/git/.gitconfig ~/.gitconfig")
         
         puts "generating ssh key for git..."
         if File.exist?key_file # ssh key already exist
