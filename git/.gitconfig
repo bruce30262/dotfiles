@@ -10,7 +10,8 @@
     email = bruce30262@gmail.com
     
 [alias]
-    a = add -A
+    a = add
+    aa = add -A
     ai = add -i
     ###############
     d = diff
@@ -30,11 +31,16 @@
     ###############
     ps = push
     psa = push --all
+    psf = push --force
     ###############
     pl = pull
     ###############
     r = remote
     rv = remote -v
+    ###############
+    rs = reset
+    rss = reset --soft
+    rsh = reset --hard
     ###############
     s = status
     su = status -u
