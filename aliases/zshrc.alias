@@ -1,7 +1,5 @@
-# for bash 
-alias llh="ll -h"
-alias llrt="ll -rt"
-alias sai="sudo apt-get install"
+# for zsh 
+alias lrt="l -rt"
 alias mps="ps -eo pid,cmd,etime"
 alias mpsg="ps -eo pid,cmd,etime | grep"
 
