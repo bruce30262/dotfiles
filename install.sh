@@ -11,6 +11,10 @@ echo "setting vim..."
 bash $cur_dir/set_vim.sh
 echo "done setting vim."
 
+# install curl
+echo "installing curl..."
+sudo apt-get install -y curl
+
 # install ruby
 echo "installing ruby..."
 sudo apt-get install -y ruby
