@@ -68,6 +68,8 @@ module Setup
         if not is_dir_exist("#{Dir.home}/.oh-my-zsh/")
             puts "installing oh my zsh..."
             system("cd ~ && sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)\"")
+        else
+            puts("oh my zsh seems installed")
         end
 
         # setting .zshrc
