@@ -1,5 +1,7 @@
 #!/bin/bash 
 
+# this script install the whole environment settings
+
 cur_dir=$(dirname $(readlink -f $BASH_SOURCE))
 
 # install vim
@@ -18,4 +20,4 @@ echo "running setup ruby script..."
 ruby $cur_dir/install.rb --all
 
 echo "All done!"
-echo "source ~/.bashrc to load the latest bashrc setting."
+echo "Log out & login to load the latest zsh setting."

@@ -90,7 +90,7 @@ ARGV.options do |opts|
     opts.on("-A", "--all", "Enable all the following options ( = Install all of them )") { set_all()  }
     opts.on("--tmux", "Install tmux and set .tmux.conf") { $options["install_tmux"] = true }
     opts.on("--NOT", "Install nautilus-open-terminal") { $options["install_NOT"] = true }
-    opts.on("--bashrc", "Set the .bashrc file") { $options["set_bashrc"] = true }
+    opts.on("--zsh", "Setting zsh") { $options["set_zsh"] = true }
     opts.on("--git", "Setting git, including setting the .gitconfig file and generate the ssh key") { $options["set_git"] = true }
     opts.on("--sshkey", "Generate a RSA 4096 bit ssh key pair ( require user email )") { $options["gen_git_sshkey"] = true }
     opts.on("-h", "--help", "Display this message")         { puts opts; exit 0 }
