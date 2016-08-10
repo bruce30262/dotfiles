@@ -4,6 +4,7 @@
 
 $CUR_DIR = File.expand_path(File.dirname(__FILE__))
 $default_email = "bruce30262@gmail.com"
+$dbg_repo = "https://raw.githubusercontent.com/bruce30262/CTF/master/debugger/"
 
 module Myutil
 
@@ -31,6 +32,11 @@ module Myutil
 
     def is_file_exist(f)
         return File.file?(f)
+    end
+
+    def curl_download_to(url, to)
+        puts "downloading #{url} to #{to}..."
+        system("curl -fsSL #{url} -o #{to}")
     end
 
 end
@@ -101,6 +107,85 @@ module Setup
         end
 
         puts "done setting git."
+    end
+
+    def set_peda()
+        # checking if peda is installed or not
+        if not is_dir_exist("#{Dir.home}/peda/")
+            # install peda
+            puts "installing peda..."
+            system("cd ~ && git clone https://github.com/bruce30262/peda.git ~/peda/")
+        end
+
+        peda_init = $dbg_repo + ".gdbinit_peda"
+        mygdb = $dbg_repo + "gdb"
+        ga = $dbg_repo + "ga"
+
+        puts "downloading .gdbinit & other utilities..."
+        curl_download_to(peda_init, "~/.gdbinit_peda")
+        curl_download_to(mygdb, "~/gdb")
+        curl_download_to(ga, "~/ga")
+         
+        puts "setting file permission..."
+        system("cd ~ && chmod u+x ~/gdb && chmod u+x ~/ga")
+    
+        puts "done setting peda"
+    end
+
+    def set_pwndbg()
+        # checking if peda is installed or not
+        if not is_dir_exist("#{Dir.home}/pwndbg/")
+            # install pwndbg
+            puts "installing pwndbg..."
+            system("cd ~ && git clone https://github.com/pwndbg/pwndbg ~/pwndbg/")
+            system("cd ~/pwndbg && sudo ./setup.sh")
+        end
+
+        peda_init = $dbg_repo + ".gdbinit_pwndbg"
+        mygdb = $dbg_repo + "pgdb"
+        ga = $dbg_repo + "pga"
+
+        puts "downloading .gdbinit & other utilities..."
+        curl_download_to(peda_init, "~/.gdbinit_pwndbg")
+        curl_download_to(mygdb, "~/pgdb")
+        curl_download_to(ga, "~/pga")
+        
+        puts "setting file permission..."
+        system("cd ~ && chmod u+x ~/pgdb && chmod u+x ~/pga")
+
+        puts "done setting pwndbg"
+    end
+
+    def set_dbg()
+        puts "Which debbuger?"
+        puts "1. peda"
+        puts "2. pdbg"
+        puts "3. both"
+        print "Choice: "
+        choice = gets.chomp
+
+        if choice == "1"
+            puts "setting gdb-peda..."
+            set_peda()
+        elsif choice == "2"
+            puts "setting pwndbg..."
+            set_pwndbg()
+        elsif choice == "3"
+            puts "setting gdb-peda & pwndbg..."
+            set_peda()
+            set_pwndbg()
+        else
+            puts "Invalid choice. Aborting..."
+            return
+        end
+
+        puts "setting debugger alias..."
+        curl_download_to($dbg_repo+"dbg.alias", $CUR_DIR+"/aliases/dbg.alias")
+
+        puts "reset ~/.gdbinit..."
+        system("rm -f ~/.gdbinit && touch ~/.gdbinit")
+
+        puts "source ~/.zshrc to apply the latest debugger setting"
     end
 
 end

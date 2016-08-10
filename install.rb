@@ -93,6 +93,7 @@ ARGV.options do |opts|
     opts.on("--zsh", "Setting zsh") { $options["set_zsh"] = true }
     opts.on("--git", "Setting git, including setting the .gitconfig file and generate the ssh key") { $options["set_git"] = true }
     opts.on("--sshkey", "Generate a RSA 4096 bit ssh key pair ( require user email )") { $options["gen_git_sshkey"] = true }
+    opts.on("--dbg", "Install debugger ( peda & pwndbg )") { $options["set_dbg"] = true }
     opts.on("-h", "--help", "Display this message")         { puts opts; exit 0 }
 
     OPT = opts
