@@ -58,6 +58,7 @@ end
 
 def ready_task()
     $options["gen_git_sshkey"] = false if $options["set_git"] == true
+    $options["set_peda"], $options["set_pwndbg"] = false, false
 
     for symbol in $symbols
         if $options[symbol.to_s] == true
