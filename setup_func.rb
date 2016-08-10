@@ -133,7 +133,7 @@ module Setup
     end
 
     def set_pwndbg()
-        # checking if peda is installed or not
+        # checking if pwndbg is installed or not
         if not is_dir_exist("#{Dir.home}/pwndbg/")
             # install pwndbg
             puts "installing pwndbg..."
@@ -141,14 +141,14 @@ module Setup
             system("cd ~/pwndbg && sudo ./setup.sh")
         end
 
-        peda_init = $dbg_repo + ".gdbinit_pwndbg"
-        mygdb = $dbg_repo + "pgdb"
-        ga = $dbg_repo + "pga"
+        pwndbg_init = $dbg_repo + ".gdbinit_pwndbg"
+        pgdb = $dbg_repo + "pgdb"
+        pga = $dbg_repo + "pga"
 
         puts "downloading .gdbinit & other utilities..."
-        curl_download_to(peda_init, "~/.gdbinit_pwndbg")
-        curl_download_to(mygdb, "~/pgdb")
-        curl_download_to(ga, "~/pga")
+        curl_download_to(pwndbg_init, "~/.gdbinit_pwndbg")
+        curl_download_to(pgdb, "~/pgdb")
+        curl_download_to(pga, "~/pga")
         
         puts "setting file permission..."
         system("cd ~ && chmod u+x ~/pgdb && chmod u+x ~/pga")
