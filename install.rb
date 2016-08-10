@@ -50,6 +50,8 @@ def handle_task()
             else
                 task.call(email)
             end
+        elsif task.name.to_s == "set_dbg"
+            task.call($dbg)
         else
             task.call()
         end
@@ -71,6 +73,7 @@ def set_all()
     $options.each do |func, doit|
         $options[func] = true
     end
+    $dbg = "all"
 end
 
 def check_options()
@@ -94,7 +97,7 @@ ARGV.options do |opts|
     opts.on("--zsh", "Setting zsh") { $options["set_zsh"] = true }
     opts.on("--git", "Setting git, including setting the .gitconfig file and generate the ssh key") { $options["set_git"] = true }
     opts.on("--sshkey", "Generate a RSA 4096 bit ssh key pair ( require user email )") { $options["gen_git_sshkey"] = true }
-    opts.on("--dbg", "Install debugger ( peda & pwndbg )") { $options["set_dbg"] = true }
+    opts.on("--dbg=val", "Install debugger, val = peda or pwndbg or all ( ex. --dbg=all )") { |val| $dbg = val ; $options["set_dbg"] = true }
     opts.on("-h", "--help", "Display this message")         { puts opts; exit 0 }
 
     OPT = opts

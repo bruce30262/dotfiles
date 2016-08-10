@@ -156,21 +156,15 @@ module Setup
         puts "done setting pwndbg"
     end
 
-    def set_dbg()
-        puts "Which debbuger?"
-        puts "1. peda"
-        puts "2. pdbg"
-        puts "3. both"
-        print "Choice: "
-        choice = gets.chomp
+    def set_dbg(choice)
 
-        if choice == "1"
+        if choice == "peda"
             puts "setting gdb-peda..."
             set_peda()
-        elsif choice == "2"
+        elsif choice == "pwndbg"
             puts "setting pwndbg..."
             set_pwndbg()
-        elsif choice == "3"
+        elsif choice == "all"
             puts "setting gdb-peda & pwndbg..."
             set_peda()
             set_pwndbg()
