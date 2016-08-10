@@ -1,0 +1,7 @@
+# ignore these
+*
+
+# except these file
+!.gitignore
+!zshrc.alias
+
