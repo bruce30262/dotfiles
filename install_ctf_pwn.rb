@@ -42,12 +42,10 @@ if not is_this_installed("ipython")
 end
 
 # radare2
-if not is_dir_exist("#{Dir.home}/radare2")
+if not is_this_installed("r2")
     puts "Installing radare2..."
     system("git clone https://github.com/radare/radare2.git ~/radare2")
     system("cd ~/radare2/sys && sudo ./install.sh")
-elsif
-    puts "radare2 already installed"
 end
 
 # angr
