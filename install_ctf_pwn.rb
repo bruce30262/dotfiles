@@ -23,8 +23,8 @@ end
 
 # ROPGadget
 if not is_this_installed("ROPgadget")
-    system("git clone https://github.com/JonathanSalwan/ROPgadget.git ~/ROPGadget")
-    system("cd ~/ROPGadget && sudo python setup.py install")
+    system("git clone https://github.com/JonathanSalwan/ROPgadget.git ~/ROPgadget")
+    system("cd ~/ROPgadget && sudo python setup.py install")
 end
 
 # libc-database
