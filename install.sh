@@ -26,7 +26,7 @@ sudo apt-get install -y gdb gdb-multiarch
 
 # other tools
 sudo apt-get install -y openssh-server 
-sudo apt-get install -y python-pip python-pip3
+sudo apt-get install -y python-pip
 sudo apt-get install -y nmap
 
 # install ruby
