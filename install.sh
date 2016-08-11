@@ -7,16 +7,12 @@ cur_dir=$(dirname $(readlink -f $BASH_SOURCE))
 # update package info
 sudo apt-get -y update
 
-# install vim
+# install & set vim
 echo "installing vim..."
 sudo apt-get install -y vim
 echo "setting vim..."
 bash $cur_dir/set_vim.sh
 echo "done setting vim."
-
-# install curl
-echo "installing curl..."
-sudo apt-get install -y curl
 
 # install nasm, gdb, gcc & g++ family
 sudo apt-get install -y nasm
@@ -25,13 +21,12 @@ sudo apt-get install -y gcc-multilib g++-multilib
 sudo apt-get install -y gdb gdb-multiarch
 
 # other tools
+sudo apt-get install -y ruby
+sudo apt-get install -y tig
 sudo apt-get install -y openssh-server 
 sudo apt-get install -y python-pip
 sudo apt-get install -y nmap
-
-# install ruby
-echo "installing ruby..."
-sudo apt-get install -y ruby
+sudo apt-get install -y curl
 
 # run the other setup via a ruby script
 echo "running setup ruby script..."
