@@ -66,8 +66,8 @@ res = system("bash -c '#{SOURCE_VIRTUALENV} 2>/dev/null'")
 if res == false # no virtualenv
     puts "Installing angr dependencies..."
     system("sudo apt-get install -y python-dev libffi-dev build-essential virtualenvwrapper")
-    system("sudo updatedb && cp `locate virtualenvwrapper.sh` #{$CUR_DIR}/aliases/virtualenvwrapper.sh.alias'")
 end
+system("sudo updatedb && cp `locate virtualenvwrapper.sh` #{$CUR_DIR}/aliases/virtualenvwrapper.sh.alias'")
 # then check angr
 resp = `bash -c '#{SOURCE_VIRTUALENV} && lsvirtualenv'`
 if resp.include?"angr"
