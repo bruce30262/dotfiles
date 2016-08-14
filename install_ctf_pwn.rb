@@ -61,13 +61,14 @@ end
 
 # angr
 # first check virtualenv
-SOURCE_VIRTUALENV = "source $(locate virtualenvwrapper.sh)"
+FIND_VIRTUALENV = "sudo find / -name virtualenvwrapper.sh"
+SOURCE_VIRTUALENV = "source $(#{FIND_VIRTUALENV})"
 res = system("bash -c '#{SOURCE_VIRTUALENV} 2>/dev/null'")
 if res == false # no virtualenv
     puts "Installing angr dependencies..."
     system("sudo apt-get install -y python-dev libffi-dev build-essential virtualenvwrapper")
 end
-system("sudo updatedb && cp `locate virtualenvwrapper.sh` #{$CUR_DIR}/aliases/virtualenvwrapper.sh.alias'")
+system("cp $(#{FIND_VIRTUALENV}) #{$CUR_DIR}/aliases/virtualenvwrapper.sh.alias")
 # then check angr
 resp = `bash -c '#{SOURCE_VIRTUALENV} && lsvirtualenv'`
 if resp.include?"angr"
