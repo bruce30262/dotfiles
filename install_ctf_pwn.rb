@@ -15,7 +15,7 @@ end
 res = system("python -c 'import pwn'")
 if res == false # start installing
     puts "Installing pwntools..."
-    system("sudo apt-get install -y python2.7 python2.7-dev python-pip libffi-dev libssl-dev libssh-dev")
+    install("python2.7 python2.7-dev python-pip libffi-dev libssl-dev libssh-dev")
     system("sudo pip install --upgrade git+https://github.com/Gallopsled/pwntools.git")
 else # already install
     puts "pwntools already installed"
@@ -66,7 +66,7 @@ SOURCE_VIRTUALENV = "source $(#{FIND_VIRTUALENV})"
 res = system("bash -c '#{SOURCE_VIRTUALENV} 2>/dev/null'")
 if res == false # no virtualenv
     puts "Installing angr dependencies..."
-    system("sudo apt-get install -y python-dev libffi-dev build-essential virtualenvwrapper")
+    install("python-dev libffi-dev build-essential virtualenvwrapper")
 end
 system("cp $(#{FIND_VIRTUALENV}) #{$CUR_DIR}/aliases/virtualenvwrapper.sh.alias")
 # then check angr
@@ -77,3 +77,11 @@ else # not install angr virtualenv yet
     system("bash -c '#{SOURCE_VIRTUALENV} && mkvirtualenv angr && pip install --upgrade angr && deactivate'")
 end
 
+# afl
+if not is_this_installed("afl-fuzz")
+    puts "Installing AFL fuzzer..."
+    install("clang llvm")
+    system("cd ~ && wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz")
+    system("cd ~ && tar -xzvf afl-latest.tgz && rm afl-latest.tgz")
+    system("cd ~/afl-* && make && cd llvm_mode && make && cd ../ && sudo make install")
+end
