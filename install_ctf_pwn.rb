@@ -85,3 +85,10 @@ if not is_this_installed("afl-fuzz")
     system("cd ~ && tar -xzvf afl-latest.tgz && rm afl-latest.tgz")
     system("cd ~/afl-* && make && cd llvm_mode && make && cd ../ && sudo make install && cd qemu_mode && sudo ./build_qemu_support.sh && sudo cp ~/afl-*/afl-qemu-trace /usr/local/bin/")
 end
+
+# qira 
+if not is_this_installed("qira")
+    puts ("Installing qira...")
+    system("cd ~ && git clone https://github.com/BinaryAnalysisPlatform/qira.git")
+    system("cd ~/qira/ && sudo ./install.sh")
+end
