@@ -4,9 +4,9 @@ require_relative 'setup_func'
 include Myutil
 
 # my CTF toolkit
-if not is_dir_exist("#{Dir.home}/CTF")
+if not is_dir_exist("#{Dir.home}/CTF-master")
     puts "Installing bruce30262 CTF-toolkit..."
-    system("git clone https://github.com/bruce30262/CTF.git ~/CTF")
+    system("git clone https://github.com/bruce30262/CTF.git ~/CTF-master")
 else
     puts "bruce30262 CTF-toolkit already installed"
 end
