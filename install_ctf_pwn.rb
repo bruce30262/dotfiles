@@ -92,3 +92,21 @@ if not is_this_installed("qira")
     system("cd ~ && git clone https://github.com/BinaryAnalysisPlatform/qira.git")
     system("cd ~/qira/ && sudo ./install.sh")
 end
+
+# Intel pin
+if not is_dir_exist("#{Dir.home}/pin")
+    puts "Installing Intel-pin..."
+
+    # get the latest download link of intel-pin for gcc-linux
+    DOWNLOAD_URL = "http://software.intel.com/sites/landingpage/pintool/downloads/"
+    PIN_GCC_LINUX = /pin-\d+\.\d+-\d+-gcc[.\d]*-linux\.tar\.gz/
+    resp = `curl -s https://software.intel.com/en-us/articles/pin-a-binary-instrumentation-tool-downloads`
+    latest_pin_file = resp.scan(PIN_GCC_LINUX).sort.reverse[0]
+    url = DOWNLOAD_URL + latest_pin_file
+    # download intel-pin and installed inscount0.so
+    system("wget #{url} -O ~/pin.tar.gz")
+    system("cd ~ && tar xvf pin.tar.gz && rm pin.tar.gz && mv pin-*-gcc*-linux/ pin/")
+    system("cd ~/pin/source/tools/ManualExamples/ && make obj-intel64/inscount0.so")
+else
+    puts "Intel-pin already exist"
+end
