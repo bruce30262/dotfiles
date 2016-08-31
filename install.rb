@@ -101,7 +101,13 @@ ARGV.options do |opts|
     opts.on("-h", "--help", "Display this message")         { puts opts; exit 0 }
 
     OPT = opts
-    opts.parse!
+
+    begin opts.parse!
+    rescue OptionParser::InvalidOption => e
+        puts e
+        puts opts
+        exit -1
+    end
 end
 
 # check_options()
