@@ -40,6 +40,7 @@ module Install_Tool
         if not is_dir_exist("#{Dir.home}/libc-database")
             puts "Downloading libc-database..."
             system("git clone https://github.com/niklasb/libc-database.git ~/libc-database")
+            system("cd ~/libc-database && ./get")
         else
             puts "libc-database already exist"
         end
