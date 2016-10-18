@@ -4,6 +4,7 @@
     
 [core]
     excludesfile = ~/dotfiles/git/.gitignore
+    editor= 'vim'
     
 [github]
     user = bruce30262
