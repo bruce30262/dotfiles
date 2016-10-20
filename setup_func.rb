@@ -109,6 +109,14 @@ module Setup
         puts "done setting git."
     end
 
+    def set_angelheap()
+        # checking if Pwngdb is installed or not
+        if not is_dir_exist("#{Dir.home}/Pwngdb/")
+            # install Pwngdb
+            puts "installing Pwngdb (for angelheap)..."
+            system("cd ~ && git clone https://github.com/scwuaptx/Pwngdb.git ~/Pwngdb/")
+        end
+
     def set_peda()
         # checking if peda is installed or not
         if not is_dir_exist("#{Dir.home}/peda/")
@@ -116,7 +124,10 @@ module Setup
             puts "installing peda..."
             system("cd ~ && git clone https://github.com/bruce30262/peda.git ~/peda/")
         end
-
+        
+        # setting angelheap
+        set_angelheap()
+        
         peda_init = $dbg_repo + ".gdbinit_peda"
         mygdb = $dbg_repo + "gdb"
         ga = $dbg_repo + "ga"
@@ -141,6 +152,9 @@ module Setup
             system("cd ~/pwndbg && sudo ./setup.sh")
         end
 
+        # setting angelheap
+        set_angelheap()
+        
         pwndbg_init = $dbg_repo + ".gdbinit_pwndbg"
         pgdb = $dbg_repo + "pgdb"
         pga = $dbg_repo + "pga"
