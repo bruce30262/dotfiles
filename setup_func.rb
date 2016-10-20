@@ -116,6 +116,7 @@ module Setup
             puts "installing Pwngdb (for angelheap)..."
             system("cd ~ && git clone https://github.com/scwuaptx/Pwngdb.git ~/Pwngdb/")
         end
+    end
 
     def set_peda()
         # checking if peda is installed or not
