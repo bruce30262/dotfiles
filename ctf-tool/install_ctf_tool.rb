@@ -9,6 +9,7 @@ $stderr.sync = true
 $task_list = []
 $options = {}
 $symbols = Tools.instance_methods(false)
+$isall = false
 
 def init_options()
     for symbol in $symbols
@@ -36,8 +37,25 @@ def ready_task()
 end
 
 def set_all()
+    $isall = true
     $options.each do |func, doit|
         $options[func] = true
+    end
+end
+
+def exclude_tools(tools)
+    if not $isall
+        puts "You should use this option after the --all option."
+        exit 0
+    end
+    
+    for tool in tools.split(",")
+        sym = "install_" + tool.strip()
+        for symbol in $symbols
+            if sym == symbol.to_s
+                $options[sym] = false
+            end
+        end
     end
 end
 
@@ -57,6 +75,7 @@ ARGV.options do |opts|
     opts.banner = "Usage: #{file} [options] [param]"
    
     opts.on("-A", "--all", "Enable all the following options ( = Install all of them )") { set_all()  }
+    opts.on("-e", "--exclude=val", "Excluding tools, use with the --all options (ex. --all --exclude=\"qira,angr\")") { |val| exclude_tools(val)  }
     opts.on("--bctk", "Install bruce30262's CTF-toolkit (BCTK)") { $options["install_bctk"] = true }
     opts.on("--pwntools", "Install pwntools") { $options["install_pwntools"] = true }
     opts.on("--ropgadget", "Install ropgadget") { $options["install_ropgadget"] = true }
@@ -80,6 +99,6 @@ ARGV.options do |opts|
     end
 end
 
-# check_options
+# check_options()
 ready_task()
 handle_task()
