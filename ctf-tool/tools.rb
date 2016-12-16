@@ -2,7 +2,7 @@
 
 require_relative '../setup_func'
 
-module Install_Tool
+module Tools
     include Myutil
 
     def install_bctk

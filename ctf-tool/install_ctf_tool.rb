@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
 require 'optparse'
-require_relative 'install_tool'
+require_relative 'tools'
 
-include Install_Tool
+include Tools
 
 $stderr.sync = true
 $task_list = []
 $options = {}
-$symbols = Install_Tool.instance_methods(false)
+$symbols = Tools.instance_methods(false)
 
 def init_options()
     for symbol in $symbols
