@@ -112,8 +112,7 @@ module Tools
         # qira 
         if not is_this_installed("qira")
             puts ("Installing qira...")
-            system("cd ~ && git clone https://github.com/BinaryAnalysisPlatform/qira.git")
-            system("cd ~/qira/ && sudo ./install.sh")
+            system("cd ~/ && wget -qO- https://github.com/BinaryAnalysisPlatform/qira/archive/v1.2.tar.gz | tar zx && cd qira-1.2 && sudo ./install.sh")
         end
     end
 
