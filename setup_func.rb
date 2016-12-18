@@ -63,6 +63,12 @@ module Setup
         end
     end
 
+    def set_bashrc()
+        puts "setting .bashrc..."
+        set_symlink("~/.bashrc", "#{$CUR_DIR}/bash/.bashrc")
+        puts "done setting .bashrc"
+    end
+
     def set_zsh()
         # checking if zsh is installed or not
         if not is_this_installed("zsh")
