@@ -28,9 +28,5 @@ sudo apt-get install -y python-pip
 sudo apt-get install -y nmap
 sudo apt-get install -y curl
 
-# run the other setup via a ruby script
-echo "running setup ruby script..."
-ruby $cur_dir/install.rb --all
-
 echo "All done!"
-echo "Log out & login to load the latest zsh setting."
+echo "Run ./install.rb -h for further configuration"
