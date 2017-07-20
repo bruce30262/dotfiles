@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative '../setup_func'
+require 'json'
 
 module Tools
     include Myutil
@@ -111,7 +112,7 @@ module Tools
     def install_qira
         # qira 
         if not is_this_installed("qira")
-            puts ("Installing qira...")
+            puts "Installing qira..."
             system("cd ~/ && wget -qO- https://github.com/BinaryAnalysisPlatform/qira/archive/v1.2.tar.gz | tar zx && cd qira-1.2 && sudo ./install.sh")
         end
     end
@@ -133,6 +134,56 @@ module Tools
             system("cd ~/pin/source/tools/ManualExamples/ && make obj-intel64/inscount0.so")
         else
             puts "Intel-pin already exist"
+        end
+    end
+
+    def install_rr
+        if not is_this_installed("rr")
+            # check arch
+            arch = `uname -a`
+            if arch.include?"x86_64"
+                arch = "x86_64"
+            elsif arch.include?"i686"
+                arch = "i686"
+            else
+                puts "rr for arch #{arch} not supported"
+                puts "Cancelling rr installation..."
+                return
+            end
+            # install perf
+            puts "Installing perf..."
+            install("linux-tools-common linux-tools-`uname -r`")
+            # get latest release download url
+            url, d_url = "https://api.github.com/repos/mozilla/rr/releases/latest", nil
+            resp = JSON.parse(`curl -s #{url}`)
+            for assets in resp["assets"]
+                name = assets["name"]
+                if name.include?"#{arch}" and name.include?".deb"
+                    d_url = assets["browser_download_url"]
+                    break
+                end
+            end
+
+            return if d_url == nil
+           
+            # download & install the latest release
+            filename = d_url.split("/")[-1]
+            puts "Download latest release: #{d_url}"
+            system("wget #{d_url}")
+            puts "Installing #{filename}"
+            system("sudo dpkg -i ./#{filename}")
+            puts "Removing #{filename}"
+            system("rm ./#{filename}")
+
+            # write perf_event_paranoid
+            system("sudo bash -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'")
+            system("sudo bash -c 'echo kernel.perf_event_paranoid=1 > /etc/sysctl.d/local.conf'")
+
+            # print final message
+            puts "Done installing rr"
+            pep = `cat /proc/sys/kernel/perf_event_paranoid`.strip()
+            puts "Current /proc/sys/kernel/perf_event_paranoid = #{pep} ( should <= 1 for rr to work )"
+            puts "If you're in VMware, make sure to enable \"Virtualize CPU performance counters\" option"
         end
     end
 end
