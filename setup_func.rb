@@ -176,6 +176,28 @@ module Setup
 
         puts "done setting pwndbg"
     end
+    
+    def set_gef()
+        # check if gef is installed or not
+        if not is_file_exist("#{Dir.home}/.gdbinit-gef.py")
+            # install gef
+            puts "installing gef..."
+            curl_download_to("https://github.com/hugsy/gef/raw/master/gef.py", "~/.gdbinit-gef.py")
+        end
+        set_angelheap()
+
+        gef_init = $dbg_repo + ".gdbinit_gef"
+        mygef = $dbg_repo + "gef"
+
+        puts "downloading .gdbinit & other utilities..."
+        curl_download_to(gef_init, "~/.gdbinit_gef")
+        curl_download_to(mygef, "~/gef")
+         
+        puts "setting file permission..."
+        system("cd ~ && chmod u+x ~/gef")
+    
+        puts "done setting gef"
+    end
 
     def set_dbg(choice)
 
@@ -185,10 +207,14 @@ module Setup
         elsif choice == "pwndbg"
             puts "setting pwndbg..."
             set_pwndbg()
+        elsif choice == "gef"
+            puts "setting gef..."
+            set_gef()
         elsif choice == "all"
-            puts "setting gdb-peda & pwndbg..."
+            puts "setting gdb-peda & pwndbg & gef..."
             set_peda()
             set_pwndbg()
+            set_gef()
         else
             puts "Invalid choice. Aborting..."
             return
