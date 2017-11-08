@@ -62,6 +62,8 @@ module Tools
             puts "Installing radare2..."
             system("git clone https://github.com/radare/radare2.git ~/radare2")
             system("cd ~/radare2/sys && sudo ./install.sh")
+            # install r2pipe
+            system("sudo pip install r2pipe")
         end
     end
 
