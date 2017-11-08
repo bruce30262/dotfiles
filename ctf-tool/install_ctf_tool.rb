@@ -83,7 +83,6 @@ ARGV.options do |opts|
     opts.on("--ipython", "Install ipython") { $options["install_ipython"] = true }
     opts.on("--r2", "Install radare2") { $options["install_r2"] = true }
     opts.on("--z3", "Install z3") { $options["install_z3"] = true }
-    opts.on("--angr", "Install angr") { $options["install_angr"] = true }
     opts.on("--afl", "Install afl") { $options["install_afl"] = true }
     opts.on("--qira", "Install qira") { $options["install_qira"] = true }
     opts.on("--pin", "Install Intel-pin") { $options["install_pin"] = true }

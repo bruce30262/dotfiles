@@ -80,26 +80,6 @@ module Tools
         end
     end
 
-    def install_angr
-        # angr
-        # first check virtualenv
-        find_virtualenv = "sudo find / -name virtualenvwrapper.sh"
-        source_virtualenv = "source $(#{find_virtualenv})"
-        res = system("bash -c '#{source_virtualenv} 2>/dev/null'")
-        if res == false # no virtualenv
-            puts "Installing angr dependencies..."
-            install("python-dev libffi-dev build-essential virtualenvwrapper")
-        end
-        system("cp $(#{find_virtualenv}) #{$CUR_DIR}/aliases/virtualenvwrapper.sh.alias")
-        # then check angr
-        resp = `bash -c '#{source_virtualenv} && lsvirtualenv'`
-        if resp.include?"angr"
-            puts "angr already installed"
-        else # not install angr virtualenv yet
-            system("bash -c '#{source_virtualenv} && mkvirtualenv angr && pip install --upgrade angr && deactivate'")
-        end
-    end
-
     def install_afl
         # afl
         if not is_this_installed("afl-fuzz")
