@@ -1,8 +1,22 @@
 #!/usr/bin/env ruby
 
-resp = `find $HOME -name ".git"`.split("\n")
-
 repo = []
+
+def ask(dir)
+    while true
+        print "\ngit pull #{dir}? <y/n>"
+        choice = gets.chomp.strip().downcase
+        if choice == "n"
+            return false
+        elsif choice == "y"
+            return true
+        else
+            puts "Wrong input"
+        end
+    end
+end
+
+resp = `find $HOME -name ".git"`.split("\n")
 
 for d in resp
     if d.include?".vim" # ~/.vim is special case
@@ -12,26 +26,11 @@ for d in resp
     end
 end
 
-puts "The following repos will be updated:"
-puts repo
-
-while true
-    print "\nStart git pull ? <y/n>"
-    choice = gets.chomp.strip().downcase
-    if choice == "n"
-        puts "Program exit..."
-        exit 1
-    elsif choice == "y"
-        puts "OK"
-        break
-    else
-        puts "Wrong input"
+for dir in repo
+    if ask(dir)
+        puts "git pulling #{dir}..."
+        system("cd #{dir} && git pull")
     end
 end
 
-for dir in repo
-    puts "git pulling #{dir}..."
-    system("cd #{dir} && git pull")
-end
-
-puts "All done !!"
+puts "\nAll done !!"
