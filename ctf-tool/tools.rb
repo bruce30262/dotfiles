@@ -28,8 +28,8 @@ module Tools
         res = system("python -c 'import pwn'")
         if res == false # start installing
             puts "Installing pwntools..."
-            install("python2.7 python2.7-dev python-pip libffi-dev libssl-dev libssh-dev")
-            system("sudo pip install --upgrade git+https://github.com/Gallopsled/pwntools.git")
+            install("python2.7 python-pip python-dev git libssl-dev libffi-dev build-essential")
+            system("sudo pip install --upgrade pwntools")
         else # already install
             puts "pwntools already installed"
         end
