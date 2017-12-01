@@ -12,14 +12,13 @@ module Tools
             puts "Installing bruce30262 CTF-toolkit..."
             system("git clone https://github.com/bruce30262/CTF.git ~/CTF-master")
             system("cp ~/CTF-master/ctfrc ~/dotfiles/aliases/ctfrc.alias")
+        end
+        if system("python -c 'import brucepwn'") == false
+            # install brucepwn
+            puts "Installing brucepwn..."
+            system("cd ~/CTF-master/script/brucepwn/ && sudo python setup.py install")
         else
-            if system("python -c 'import brucepwn'") == false
-                # install brucepwn
-                puts "Installing brucepwn..."
-                system("cd ~/CTF-master/script/brucepwn/ && sudo python setup.py install")
-            else
-                puts "bruce30262 CTF-toolkit already installed"
-            end
+            puts "bruce30262 CTF-toolkit already installed"
         end
     end
 
