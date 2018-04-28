@@ -21,6 +21,7 @@ sudo apt-get install -y gcc-multilib g++-multilib
 sudo apt-get install -y gdb gdb-multiarch
 
 # other tools
+sudo apt-get install -y python
 sudo apt-get install -y ruby
 sudo apt-get install -y tig
 sudo apt-get install -y openssh-server 
