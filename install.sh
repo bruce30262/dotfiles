@@ -33,8 +33,5 @@ sudo apt-get install -y nmap
 sudo apt-get install -y net-tools
 sudo apt-get install -y curl
 
-# yahei consolas font
-wget -qO- https://raw.githubusercontent.com/yakumioto/YaHei-Consolas-Hybrid-1.12/master/install.sh | sudo sh
-
 echo "All done!"
 echo "Run ./install.rb -h for further configuration"
