@@ -54,13 +54,8 @@ module Setup
         puts "setting tmux done."
     end
 
-    def install_NOT() # installing nautilus-open-terminal
-        if not is_this_installed("nautilus")
-            puts "installing nautilus-open-terminal..."
-            install("nautilus-open-terminal")
-            system("nautilus -q && nautilus &")
-            puts "done installing nautilus-open-terminal"
-        end
+    def install_fonts() # install fonts
+        system("sudo #{$CUR_DIR}/fonts/install_fonts.sh")
     end
 
     def set_bashrc()
