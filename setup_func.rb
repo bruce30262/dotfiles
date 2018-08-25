@@ -132,15 +132,13 @@ module Setup
         
         peda_init = $dbg_repo + ".gdbinit_peda"
         mygdb = $dbg_repo + "gdb"
-        ga = $dbg_repo + "ga"
 
         puts "downloading .gdbinit & other utilities..."
         curl_download_to(peda_init, "~/.gdbinit_peda")
         curl_download_to(mygdb, "~/gdb")
-        curl_download_to(ga, "~/ga")
          
         puts "setting file permission..."
-        system("cd ~ && chmod u+x ~/gdb && chmod u+x ~/ga")
+        system("cd ~ && chmod u+x ~/gdb")
     
         puts "done setting peda"
     end
@@ -159,15 +157,13 @@ module Setup
         
         pwndbg_init = $dbg_repo + ".gdbinit_pwndbg"
         pgdb = $dbg_repo + "pgdb"
-        pga = $dbg_repo + "pga"
 
         puts "downloading .gdbinit & other utilities..."
         curl_download_to(pwndbg_init, "~/.gdbinit_pwndbg")
         curl_download_to(pgdb, "~/pgdb")
-        curl_download_to(pga, "~/pga")
         
         puts "setting file permission..."
-        system("cd ~ && chmod u+x ~/pgdb && chmod u+x ~/pga")
+        system("cd ~ && chmod u+x ~/pgdb")
 
         puts "done setting pwndbg"
     end
