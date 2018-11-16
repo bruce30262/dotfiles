@@ -3,7 +3,7 @@
 # bunch of setup functions
 
 $CUR_DIR = File.expand_path(File.dirname(__FILE__))
-$default_email = "bruce30262@gmail.com"
+$default_email = "bruce30262@pm.me"
 $dbg_repo = "https://raw.githubusercontent.com/bruce30262/CTF/master/debugger/"
 
 module Myutil
