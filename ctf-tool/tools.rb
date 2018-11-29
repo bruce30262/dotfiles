@@ -79,7 +79,7 @@ module Tools
             puts "Installing z3..."
             system("git clone https://github.com/Z3Prover/z3.git ~/z3")
             system("cd ~/z3 && python scripts/mk_make.py --python")
-            system("cd ~/z3/build && make && sudo make install")
+            system("cd ~/z3/build && make -j $(nproc) && sudo make install")
         else
             puts "z3 already installed"
         end
