@@ -1,4 +1,4 @@
-cur_dir=$(dirname $(readlink -f ~/.zshrc))
+cur_dir=$(dirname $(greadlink -f ~/.zshrc))
 
 # source my own .zshrc 
 source $cur_dir/.zshrc.ori
