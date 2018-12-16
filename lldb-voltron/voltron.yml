@@ -1,0 +1,13 @@
+# /Users/macos/.config/tmuxinator/voltron.yml
+
+name: voltron
+root: ~/
+windows:
+  - madhax:
+      layout: 4d75,212x49,0,0{106x49,0,0[106x24,0,0,3,106x24,0,25,9],105x49,107,0[105x24,107,0,7,105x24,107,25,8]}
+      panes:
+        - voltron view r
+        - voltron view d
+        - voltron view stack --reverse
+        - lldb
+
