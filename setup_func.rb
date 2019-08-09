@@ -179,10 +179,12 @@ module Setup
 
         gef_init = $dbg_repo + ".gdbinit_gef"
         mygef = $dbg_repo + "gef"
+        gefrc = $dbg_repo + ".gef.rc"
 
         puts "downloading .gdbinit & other utilities..."
         curl_download_to(gef_init, "~/.gdbinit_gef")
         curl_download_to(mygef, "~/gef")
+        curl_download_to(gefrc, "~/.gef.rc")
          
         puts "setting file permission..."
         system("cd ~ && chmod u+x ~/gef")
