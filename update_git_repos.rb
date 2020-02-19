@@ -22,14 +22,14 @@ for d in resp
     if d.include?".vim" # ~/.vim is special case
         next
     else
-        repo << d.split(".git")[0]
+        repo << d.split("/.git")[0] + "/"
     end
 end
 
 for dir in repo
     if ask(dir)
         puts "git pulling #{dir}..."
-        system("cd #{dir} && git pull")
+        system("cd \"#{dir}\" && git pull")
     end
 end
 
