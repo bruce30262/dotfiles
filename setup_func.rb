@@ -74,14 +74,16 @@ module Setup
         # checking if zimfw is installed or not
         if not is_dir_exist("#{Dir.home}/.zim/")
             puts "installing zimfw..."
-            system("cd ~ && zsh -c \"$(curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh)\"")
+            system("mkdir -p ~/.zim")
+            curl_download_to("https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh", "~/.zim/zimfw.zsh")
+            system("chmod +x ~/.zim/zimfw.zsh")
+            system("cp #{$CUR_DIR}/zsh/.z* ~/")
+            system("cp #{$CUR_DIR}/zsh/.p10k.zsh ~/")
+            system("zsh -c \"source ~/.zim/zimfw.zsh install\"")
         else
             puts("zimfw seems installed")
         end
 
-        # setting custom .zshrc
-        puts "merging custom.zshrc..."
-        system("cat ~/.zshrc #{$CUR_DIR}/zsh/custom.zshrc > ~/.zshrc.tmp && mv ~/.zshrc.tmp ~/.zshrc")    
         puts "done setting zsh."
     end
 
