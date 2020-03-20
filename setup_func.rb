@@ -71,17 +71,17 @@ module Setup
             install("zsh")
         end
 
-        # checking if oh my zsh is installed or not
-        if not is_dir_exist("#{Dir.home}/.oh-my-zsh/")
-            puts "installing oh my zsh..."
-            system("cd ~ && sh -c \"$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)\"")
+        # checking if zimfw is installed or not
+        if not is_dir_exist("#{Dir.home}/.zim/")
+            puts "installing zimfw..."
+            system("cd ~ && zsh -c \"$(curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh)\"")
         else
-            puts("oh my zsh seems installed")
+            puts("zimfw seems installed")
         end
 
-        # setting .zshrc
-        puts "setting .zshrc..."
-        set_symlink("~/.zshrc", "#{$CUR_DIR}/zsh/.zshrc")
+        # setting custom .zshrc
+        puts "merging custom.zshrc..."
+        system("cat ~/.zshrc #{$CUR_DIR}/zsh/custom.zshrc > ~/.zshrc.tmp && mv ~/.zshrc.tmp ~/.zshrc")    
         puts "done setting zsh."
     end
 

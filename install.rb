@@ -95,7 +95,7 @@ ARGV.options do |opts|
     opts.on("--tmux", "Install tmux and set .tmux.conf") { $options["install_tmux"] = true }
     opts.on("--fonts", "Install fonts in fonts/") { $options["install_fonts"] = true }
     opts.on("--bashrc", "Set the .bashrc file") { $options["set_bashrc"] = true }
-    opts.on("--zsh", "Setting zsh") { $options["set_zsh"] = true }
+    opts.on("--zsh", "Setting zsh ( zimfw )") { $options["set_zsh"] = true }
     opts.on("--git", "Setting git, including setting the .gitconfig file and generate the ssh key") { $options["set_git"] = true }
     opts.on("--sshkey", "Generate a RSA 4096 bit ssh key pair ( require user email )") { $options["gen_git_sshkey"] = true }
     opts.on("--dbg=val", "Install debugger, val = peda or pwndbg or gef or all ( ex. --dbg=all )") { |val| $dbg = val ; $options["set_dbg"] = true }
