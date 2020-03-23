@@ -104,10 +104,12 @@ source ${ZIM_HOME}/init.zsh
 #
 # zsh-history-substring-search
 #
-
+HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='I' # case sensitive search
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '^[OA' history-substring-search-up # have to use this in ubuntu linux
+bindkey '^[OB' history-substring-search-down # have to use this in ubuntu linux
 
 # Bind up and down keys
 zmodload -F zsh/terminfo +p:terminfo
