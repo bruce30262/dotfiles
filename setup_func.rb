@@ -70,20 +70,29 @@ module Setup
             puts "installing zsh..."
             install("zsh")
         end
-
+        
+        def set_rcS()
+            # Setup zsh rc files
+            system("cp #{$CUR_DIR}/zsh/.z* ~/")
+            set_symlink("~/.zshrc", "#{$CUR_DIR}/zsh/.zshrc")
+            set_symlink("~/.zimrc", "#{$CUR_DIR}/zsh/.zimrc")
+            set_symlink("~/.p10k.zsh", "#{$CUR_DIR}/zsh/.p10k.zsh")
+        end
         # checking if zimfw is installed or not
         if not is_dir_exist("#{Dir.home}/.zim/")
             puts "installing zimfw..."
+            # Fetch & prepare zimfw
             system("mkdir -p ~/.zim")
             curl_download_to("https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh", "~/.zim/zimfw.zsh")
             system("chmod +x ~/.zim/zimfw.zsh")
-            system("cp #{$CUR_DIR}/zsh/.z* ~/")
-            system("cp #{$CUR_DIR}/zsh/.p10k.zsh ~/")
+            # Set rc files before installing zimfw
+            set_rcS()
+            # Start install zimfw
             system("zsh -c \"source ~/.zim/zimfw.zsh install\"")
         else
-            puts("zimfw seems installed")
+            puts("zimfw seems installed. Set rc files only.")
+            set_rcS()
         end
-
         puts "done setting zsh."
     end
 
