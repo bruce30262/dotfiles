@@ -129,6 +129,8 @@ for file in $HOME/dotfiles/rcS/*;
 do
     source "$file"
 done
+# source termsupport.zsh
+source $HOME/dotfiles/zsh/termsupport.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
