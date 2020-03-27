@@ -49,9 +49,15 @@ module Setup
             puts "installing tmux..."
             install("tmux")
         end
+        if not is_dir_exist("#{Dir.home}/.tmux/plugins/tpm")
+            puts "installing tpm..."
+            system("cd ~ && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm")
+        end
+
         puts "setting .tmux.conf..."
         set_symlink("~/.tmux.conf", "#{$CUR_DIR}/.tmux.conf")
         puts "setting tmux done."
+        puts "In tmux, use <prefix> + I to install tmux plugins."
     end
 
     def install_fonts() # install fonts
