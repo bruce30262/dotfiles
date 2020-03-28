@@ -32,6 +32,7 @@ sudo apt-get install -y python-pip
 sudo apt-get install -y nmap
 sudo apt-get install -y net-tools
 sudo apt-get install -y curl
+sudo apt-get install -y powerline fonts-powerline
 
 echo "All done!"
 echo "Run ./install.rb -h for further configuration"
