@@ -61,7 +61,7 @@ module Setup
     end
 
     def install_fonts() # install fonts
-        system("sudo #{$CUR_DIR}/fonts/install_fonts.sh")
+        system("cd #{$CUR_DIR}/fonts && sudo ./install_fonts.rb")
     end
 
     def set_bashrc()
