@@ -46,6 +46,9 @@
     s = status
     su = status -u
     ###############
+    rb = rebase
+    rbi = rebase -i
+    ###############
 
     # change a git repo's remote url from https to ssh (for github only)
     # have to use 2 back slash because the first back slash will read by .gitconfig
