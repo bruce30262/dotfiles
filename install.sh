@@ -28,7 +28,7 @@ sudo apt-get install -y htop
 sudo apt-get install -y ruby
 sudo apt-get install -y tig
 sudo apt-get install -y openssh-server 
-sudo apt-get install -y python-pip
+sudo apt-get install -y python3-pip
 sudo apt-get install -y nmap
 sudo apt-get install -y net-tools
 sudo apt-get install -y curl
