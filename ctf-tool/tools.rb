@@ -11,7 +11,7 @@ module Tools
         if not is_dir_exist("#{Dir.home}/CTF-master")
             puts "Installing bruce30262 CTF-toolkit..."
             system("git clone https://github.com/bruce30262/CTF.git ~/CTF-master")
-            system("cp ~/CTF-master/ctfrc ~/dotfiles/aliases/ctfrc.alias")
+            system("cp ~/CTF-master/ctfrc ~/dotfiles/rcS/ctfrc.alias")
         end
         if system("python -c 'import brucepwn'") == false
             # install brucepwn

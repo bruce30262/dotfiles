@@ -231,7 +231,7 @@ module Setup
         end
 
         puts "setting debugger alias..."
-        curl_download_to($dbg_repo+"dbg.alias", $CUR_DIR+"/aliases/dbg.alias")
+        curl_download_to($dbg_repo+"dbg.alias", $CUR_DIR+"/rcS/dbg.alias")
 
         puts "reset ~/.gdbinit..."
         system("rm -f ~/.gdbinit && touch ~/.gdbinit")
