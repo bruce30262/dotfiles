@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
+# Install powerline and font
+sudo apt-get install -y powerline fonts-powerline
+# Install my vim settings
 cd ~/ && mkdir -p ~/.vim && cd ~/.vim 
 git clone https://github.com/bruce30262/vim . 
 git submodule update --init # update submodule
