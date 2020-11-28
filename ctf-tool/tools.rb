@@ -141,7 +141,7 @@ module Tools
             puts "Installing perf..."
             install("linux-tools-common linux-tools-`uname -r`")
             # get latest release download url
-            url, d_url = "https://api.github.com/repos/mozilla/rr/releases/latest", nil
+            url, d_url = "https://api.github.com/repos/rr-debugger/rr/releases/latest", nil
             resp = JSON.parse(`curl -s #{url}`)
             for assets in resp["assets"]
                 name = assets["name"]
