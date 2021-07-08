@@ -148,16 +148,16 @@ module Setup
         set_angelheap()
         
         peda_init = $dbg_repo + ".gdbinit_peda"
-        mygdb = $dbg_repo + "gdb"
+        gdbp = $dbg_repo + "gdbp"
 
         puts "downloading .gdbinit & other utilities..."
         curl_download_to(peda_init, "~/.gdbinit_peda")
-        curl_download_to(mygdb, "~/gdb")
+        curl_download_to(gdbp, "~/gdbp")
          
         puts "setting file permission..."
-        system("cd ~ && chmod u+x ~/gdb")
+        system("cd ~ && chmod u+x ~/gdbp")
     
-        puts "done setting peda"
+        puts "done setting peda ( alias: gdbp )"
     end
 
     def set_pwndbg()
@@ -173,14 +173,14 @@ module Setup
         set_angelheap()
         
         pwndbg_init = $dbg_repo + ".gdbinit_pwndbg"
-        pgdb = $dbg_repo + "pgdb"
+        gdb = $dbg_repo + "gdb"
 
         puts "downloading .gdbinit & other utilities..."
         curl_download_to(pwndbg_init, "~/.gdbinit_pwndbg")
-        curl_download_to(pgdb, "~/pgdb")
+        curl_download_to(gdb, "~/gdb")
         
         puts "setting file permission..."
-        system("cd ~ && chmod u+x ~/pgdb")
+        system("cd ~ && chmod u+x ~/gdb")
 
         puts "done setting pwndbg"
     end
