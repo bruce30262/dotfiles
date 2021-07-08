@@ -34,11 +34,12 @@ module Tools
         end
     end
 
-    def install_ropgadget
-        # ROPGadget
-        if not is_this_installed("ROPgadget")
-            system("git clone https://github.com/JonathanSalwan/ROPgadget.git ~/ROPgadget")
-            system("cd ~/ROPgadget && sudo python setup.py install")
+    def install_ropper
+        # ropper
+        if not is_this_installed("ropper")
+            system("sudo pip3 install capstone")
+            system("sudo pip3 install filebytes")
+            system("sudo pip3 install ropper")
         end
     end
 

@@ -78,7 +78,7 @@ ARGV.options do |opts|
     opts.on("-e", "--exclude=val", "Excluding tools, use with the --all options (ex. --all --exclude=\"qira,angr\")") { |val| exclude_tools(val)  }
     opts.on("--bctk", "Install bruce30262's CTF-toolkit (BCTK)") { $options["install_bctk"] = true }
     opts.on("--pwntools", "Install pwntools") { $options["install_pwntools"] = true }
-    opts.on("--ropgadget", "Install ropgadget") { $options["install_ropgadget"] = true }
+    opts.on("--ropper", "Install ropper") { $options["install_ropper"] = true }
     opts.on("--libcdb", "Download libc database") { $options["install_libcdb"] = true }
     opts.on("--ipython", "Install ipython") { $options["install_ipython"] = true }
     opts.on("--r2", "Install radare2") { $options["install_r2"] = true }
