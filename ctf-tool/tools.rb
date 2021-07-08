@@ -23,12 +23,13 @@ module Tools
     end
 
     def install_pwntools
-        # pwntools
-        res = system("python -c 'import pwn'")
+        # python3 pwntools
+        res = system("python3 -c 'import pwn'")
         if res == false # start installing
             puts "Installing pwntools..."
-            install("python2.7 python-pip python-dev git libssl-dev libffi-dev build-essential")
-            system("sudo pip install --upgrade pwntools")
+            install("python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential")
+            system("sudo pip3 install --upgrade pip")
+            system("sudo pip3 install --upgrade pwntools")
         else # already install
             puts "pwntools already installed"
         end
@@ -55,10 +56,10 @@ module Tools
     end
 
     def install_ipython
-        # ipython
-        if not is_this_installed("ipython")
-            puts "Installing ipython..."
-            system("sudo pip install --upgrade ipython")
+        # python3 ipython
+        if not is_this_installed("ipython3")
+            puts "Installing ipython3..."
+            system("sudo pip3 install --upgrade ipython")
         end
     end
 
@@ -75,11 +76,11 @@ module Tools
 
     def install_z3
         # Z3
-        res = system("python -c 'import z3'")
+        res = system("python3 -c 'import z3'")
         if res == false # start installing
             puts "Installing z3..."
             system("git clone https://github.com/Z3Prover/z3.git ~/z3")
-            system("cd ~/z3 && python scripts/mk_make.py --python")
+            system("cd ~/z3 && python3 scripts/mk_make.py --python")
             system("cd ~/z3/build && make -j $(nproc) && sudo make install")
         else
             puts "z3 already installed"
