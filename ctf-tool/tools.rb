@@ -87,17 +87,6 @@ module Tools
         end
     end
 
-    def install_afl
-        # afl
-        if not is_this_installed("afl-fuzz")
-            puts "Installing AFL fuzzer..."
-            install("clang llvm libtool-bin automake autoconf bison")
-            system("cd ~ && wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz")
-            system("cd ~ && tar -xzvf afl-latest.tgz && rm afl-latest.tgz")
-            system("cd ~/afl-* && make && cd llvm_mode && make && cd ../ && sudo make install && cd qemu_mode && sudo ./build_qemu_support.sh && sudo cp ~/afl-*/afl-qemu-trace /usr/local/bin/")
-        end
-    end
-
     def install_qira
         # qira 
         if not is_this_installed("qira")
