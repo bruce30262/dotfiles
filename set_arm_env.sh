@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# use qemu-static-user to emulate arm enviroment
+# use qemu-user-static to emulate arm enviroment
 # will install gcc & g++ toolchain, libc & libstdc++
 # download armtool.alias from https://github.com/bruce30262/CTF
 
