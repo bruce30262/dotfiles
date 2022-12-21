@@ -2,7 +2,7 @@
 alias lrt="l -rt"
 alias mps="ps -eo pid,cmd,etime"
 alias mpsg="ps -eo pid,cmd,etime | grep"
-alias duso="du -sh * | sort -rh | head -n 5"
+alias duso="du -sh * | sort -rh | head -n "
 alias dus="du -sh"
 alias dfh="df -h"
 
