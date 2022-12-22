@@ -145,3 +145,6 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' '+r:|?=**'
 
 unsetopt SHARE_HISTORY
 setopt clobber
+
+bindkey '^F' kill-word 
+bindkey '^K' kill-line
