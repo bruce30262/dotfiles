@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-# executed by install.sh
-
 require 'optparse'
 require_relative 'setup_func'
 include Setup

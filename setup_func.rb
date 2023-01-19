@@ -190,7 +190,7 @@ module Setup
         if not is_file_exist("#{Dir.home}/.gdbinit-gef.py")
             # install gef
             puts "installing gef..."
-            curl_download_to("https://github.com/hugsy/gef/raw/master/gef.py", "~/.gdbinit-gef.py")
+            curl_download_to("https://github.com/hugsy/gef/raw/dev/gef.py", "~/.gdbinit-gef.py")
         end
         set_angelheap()
 
