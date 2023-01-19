@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-# this script install the whole environment settings
+# this script will install some tools that I found necessary
 
 set -ex
 
@@ -16,14 +16,11 @@ echo "setting vim..."
 bash $cur_dir/set_vim.sh
 echo "done setting vim."
 
-# install nasm, gdb, gcc & g++ family
-sudo apt-get install -y nasm
-sudo apt-get install -y gcc g++
-sudo apt-get install -y gcc-multilib g++-multilib
-sudo apt-get install -y gdb gdb-multiarch
+# install gdb, gcc
+sudo apt-get install -y gcc gdb
 
 # other tools
-sudo apt-get install -y python
+sudo apt-get install -y python3 python-is-python3
 sudo apt-get install -y htop
 sudo apt-get install -y ruby
 sudo apt-get install -y tig
