@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
-set -ex
 
-# Can be run as a single script to install zsh settings
+# Should run stow before running this script
+
+set -ex
 
 sudo apt update
 
-# Install dependencies ( zsh, stow, curl )
+# Install dependencies ( zsh, curl )
 echo "Installing dependencies..."
-sudo apt install -y zsh stow curl
-
-# Link zsh configs
-mkdir -p ~/.config/zsh
-cd ~/dotfiles/.config && stow -t ~/.config/zsh/ zsh
+sudo apt install -y zsh curl
 
 # Install zimfw
 echo "Installing zimfw..."
