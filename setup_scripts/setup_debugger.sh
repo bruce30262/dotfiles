@@ -33,6 +33,8 @@ then
     exit 1
 fi
 
+set -ex
+
 while (( $# > 0 ))
 do
     opt="$1"
