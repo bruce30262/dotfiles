@@ -1,0 +1,30 @@
+RCS
+.+,v
+
+CVS
+\.\#.+       # CVS conflict files / emacs lock files
+\.cvsignore
+
+\.svn
+_darcs
+\.hg
+
+\.git
+\.gitignore
+\.gitignore_global
+
+.+~          # emacs backup files
+\#.*\#       # emacs autosave files
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+fonts
+rcS
+helper_scripts
+setup_scripts
+^/install.sh
+.*.alias
+^/TODO
+
