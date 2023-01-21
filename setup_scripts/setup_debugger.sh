@@ -1,24 +1,38 @@
 #!/usr/bin/env bash
 
+# Should run stow before running this script
+
 DBGDIR=~/.config/gdb
 
 usage() {
+    set +x
     echo "Usage: (-h/--help|--peda|--pwndbg|--gef)"
 }
 
 setup_angelheap() {
-    [ ! -d $DBGDIR/Pwngdb ] && echo "Installing angelheap..." && git clone https://github.com/scwuaptx/Pwngdb.git $DBGDIR/Pwngdb
+    if [ ! -d $DBGDIR/Pwngdb ]
+    then
+        git clone https://github.com/scwuaptx/Pwngdb.git $DBGDIR/Pwngdb
+    fi
 }
 
 setup_peda() {
     setup_angelheap
-    [ ! -d $DBGDIR/peda ] && echo "Installing peda..." && git clone https://github.com/bruce30262/peda.git $DBGDIR/peda
+    if [ ! -d $DBGDIR/peda ] 
+    then
+        git clone https://github.com/bruce30262/peda.git $DBGDIR/peda
+    fi
 }
 
 setup_pwndbg() {
     setup_angelheap
-    [ ! -d $DBGDIR/pwndbg ] && echo "Installing pwndbg..." && git clone https://github.com/pwndbg/pwndbg $DBGDIR/pwndbg &&\
-        cd $DBGDIR/pwndbg && sudo ./setup.sh
+    if [ ! -d $DBGDIR/pwndbg ]
+    then
+        git clone https://github.com/pwndbg/pwndbg $DBGDIR/pwndbg
+        pushd $DBGDIR/pwndbg
+        sudo ./setup.sh
+        popd
+    fi
 }
 
 setup_gef() {
@@ -61,7 +75,8 @@ do
 done
 
 # If we're here, means debugger has been set. Copy alias to rcS folder
-echo "Setting alias..."
 cp ~/dotfiles/.config/gdb/dbg.alias ~/dotfiles/rcS
+
+set +x
 echo "Done."
 echo "source .zshrc to apply the latest debugger settings."
