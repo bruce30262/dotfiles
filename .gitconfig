@@ -3,7 +3,7 @@
     email = bruce30262@pm.me
     
 [core]
-    excludesfile = ~/dotfiles/git/.gitignore
+    excludesfile = ~/dotfiles/.gitignore_global
     editor= 'vim'
     
 [github]
