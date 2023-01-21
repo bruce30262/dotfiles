@@ -27,4 +27,5 @@ done
 
 fc-cache -fv
 
+set +x
 echo "Done !"
