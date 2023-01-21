@@ -4,4 +4,4 @@
 # except these file
 !.gitignore
 !zshrc.alias
-!bashrc.alias
+!.bash_aliases

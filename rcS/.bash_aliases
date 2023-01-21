@@ -1,4 +1,4 @@
-# for bash 
+# copy this file into ~/.bash_aliases for bash aliases
 alias llh="ll -h"
 alias llrt="ll -rt"
 alias sai="sudo apt-get install"
