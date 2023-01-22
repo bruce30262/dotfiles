@@ -21,7 +21,6 @@ _darcs
 ^/COPYING
 
 fonts
-rcS
 helper_scripts
 setup_scripts
 ^/install.sh
