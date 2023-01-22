@@ -13,6 +13,8 @@
 
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
+# Ignore no matches found error
+setopt no_nomatch
 
 #
 # Input/output
@@ -124,14 +126,19 @@ bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
 
 # source all the files in rcS/ dir
-for file in $HOME/dotfiles/rcS/*;
+pushd $ZDOTDIR/rcS/
+for file in * .*;
 do
-    source "$file"
+    if [ -f "$file" ]
+    then
+        source "$file"
+    fi
 done
+popd
 # source termsupport.zsh
 source $ZDOTDIR/termsupport.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# To customize prompt, run `p10k configure` or edit .p10k.zsh.
 [[ ! -f $ZDOTDIR/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
 # Customized LS_COLORS
