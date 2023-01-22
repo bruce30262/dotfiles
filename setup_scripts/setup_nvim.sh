@@ -19,5 +19,6 @@ nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
 # Setup alias
 set -e
-cp ~/dotfiles/.config/nvim/nvim.alias ~/dotfiles/rcS
+ZDOTDIR=~/.config/zsh
+cp ~/dotfiles/.config/nvim/nvim.alias $ZDOTDIR/rcS
 

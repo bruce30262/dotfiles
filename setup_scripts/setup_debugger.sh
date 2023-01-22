@@ -3,6 +3,7 @@
 # Should run stow before running this script
 
 DBGDIR=~/.config/gdb
+ZDOTDIR=~/.config/zsh
 
 usage() {
     set +x
@@ -75,7 +76,7 @@ do
 done
 
 # If we're here, means debugger has been set. Copy alias to rcS folder
-cp ~/dotfiles/.config/gdb/dbg.alias ~/dotfiles/rcS
+cp ~/dotfiles/.config/gdb/dbg.alias $ZDOTDIR/rcS
 
 set +x
 echo "Done."
