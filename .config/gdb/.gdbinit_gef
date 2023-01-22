@@ -1,11 +1,6 @@
 source ~/.config/gdb/.gdbinit-gef.py
 source ~/.config/gdb/Pwngdb/angelheap/gdbinit.py
 
-# gef config
-gef config context.clear_screen 1
-gef config context.ignore_registers "$cs $ss $ds $es $fs $gs"
-gef config context.layout "regs code args source stack extra"
-
 # misc
 set history expansion on
 set print asm-demangle on

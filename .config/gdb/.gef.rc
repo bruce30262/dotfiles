@@ -4,3 +4,8 @@ hip=heapinfo
 tm=tracemalloc
 pp=parseheap
 
+[context]
+clear_screen = True
+ignore_registers = $cs $ss $ds $es $fs $gs
+layout = regs code args source stack extra
+
