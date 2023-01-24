@@ -34,6 +34,6 @@ zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-syntax-highlighting
 # Fish-like history search (up arrow) for Zsh.
 # must be sourced after zsh-users/zsh-syntax-highlighting
-zmodule bruce30262/zsh-history-substring-search # My own customized version
+zmodule zsh-users/zsh-history-substring-search
 # }}} End configuration added by Zim install
 

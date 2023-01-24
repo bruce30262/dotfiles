@@ -106,6 +106,7 @@ source ${ZIM_HOME}/init.zsh
 # zsh-history-substring-search
 #
 HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='I' # case sensitive search
+HISTORY_SUBSTRING_SEARCH_PREFIXED=1
 # Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
