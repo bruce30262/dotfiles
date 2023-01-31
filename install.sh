@@ -17,7 +17,8 @@ sudo apt-get install -y stow \
     netcat net-tools \
     htop \
     tig \
-    curl
+    curl \
+    fzf ripgrep fd-find
 
 # stow dotfiles
 stow -t ~ --no-folding .
