@@ -39,7 +39,7 @@ setup_pwndbg() {
 setup_gef() {
     setup_angelheap
     # Always install the latest version
-    wget -O $DBGDIR/.gdbinit-gef.py https://raw.githubusercontent.com/hugsy/gef/dev/gef.py
+    wget -O $DBGDIR/.gdbinit-gef.py https://raw.githubusercontent.com/hugsy/gef/main/gef.py
 }
 
 if (( $# == 0 ))
