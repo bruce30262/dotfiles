@@ -23,6 +23,16 @@ define trl
     target remote localhost:$arg0
 end
 
+# gef-remote localhost, arg0 = port
+define grl
+    gr localhost $arg0    
+end
+
+# gef-remote --qemu-user localhost, arg0 = port
+define grql
+    grq localhost $arg0
+end
+
 # at
 define at
 if $argc <= 1

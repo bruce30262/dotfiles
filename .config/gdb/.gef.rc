@@ -3,6 +3,8 @@ find=grep
 hip=heapinfo
 tm=tracemalloc
 pp=parseheap
+gr=gef-remote
+grq=gef-remote --qemu-user
 
 [context]
 clear_screen = True
