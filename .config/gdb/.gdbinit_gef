@@ -85,13 +85,13 @@ end
 
 # base
 python
-class Base(GenericCommand):
+class Base(gdb.Command):
     """Get base address of code, heap and libc."""
-    _cmdline_ = "base"
-    _syntax_  = "{:s}".format(_cmdline_)
+    def __init__(self):
+        super (Base, self).__init__ ("base", gdb.COMMAND_USER)
 
-    @only_if_gdb_running
-    def do_invoke(self, argv):
+    def invoke(self, args, from_tty):
+        self.dont_repeat()
         gdb.execute("set $code=$_base()")
         gdb.execute("set $heap=$_base(\"heap\")")
         # Use more strict rule to find libc's address
@@ -104,6 +104,5 @@ class Base(GenericCommand):
         print("$heap = {}".format(gdb.parse_and_eval("$heap")))
         print("$libc = {}".format(gdb.parse_and_eval("$libc")))
         return
-
-register_external_command(Base())
+Base()
 end
