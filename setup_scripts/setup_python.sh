@@ -15,4 +15,4 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 . "$HOME/.cargo/env"
 
 # Setup default venv
-uv venv
+cd ~/ && uv venv
