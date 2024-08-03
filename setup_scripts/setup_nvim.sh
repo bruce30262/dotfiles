@@ -4,10 +4,10 @@
 
 set -ex
 
-sudo apt update
+sudo nala update
 
 # Install dependencies ( neovim, curl )
-sudo apt install -y neovim curl
+sudo nala install -y neovim curl
 
 # Install vim-plug
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \

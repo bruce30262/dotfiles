@@ -1,0 +1,6 @@
+# source this so uv can be found
+. "$HOME/.cargo/env"
+
+# alias for entering/exiting uv default venv
+alias py="source ~/.venv/bin/activate"
+alias depy="deactivate"

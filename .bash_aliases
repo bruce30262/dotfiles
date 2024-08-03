@@ -1,6 +1,6 @@
 # copy this file into ~/.bash_aliases for bash aliases
-alias sai="sudo apt install"
-alias up="sudo apt update && sudo apt dist-upgrade && sudo apt autoremove --purge"
+alias sni="sudo nala install"
+alias up="sudo nala upgrade && sudo nala autopurge && sudo nala clean"
 alias llh="ll -h"
 alias llrt="ll -rt"
 alias mps="ps -eo pid,cmd,etime"
@@ -11,3 +11,16 @@ alias dfh="df -h"
 
 # tmux
 alias tmux="tmux -2" 
+
+# uv
+if command -v uv &> /dev/null
+then
+    alias py="source ~/.venv/bin/activate"
+    alias depy="deactivcate"
+fi
+
+# nvim
+if command -v nvim &> /dev/null
+then
+    alias vim="nvim"
+fi

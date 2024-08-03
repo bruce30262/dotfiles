@@ -4,10 +4,10 @@
 
 set -ex
 
-sudo apt update
+sudo nala update
 
 # Install dependencies ( zsh, curl )
-sudo apt install -y zsh curl
+sudo nala install -y zsh curl
 
 # Install zimfw
 curl -fLo ~/.config/zsh/.zim/zimfw.zsh --create-dirs \

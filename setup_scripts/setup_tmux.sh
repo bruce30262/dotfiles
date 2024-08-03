@@ -4,10 +4,10 @@
 
 set -ex
 
-sudo apt update
+sudo nala update
 
 # Install dependencies ( tmux )
-sudo apt install -y tmux
+sudo nala install -y tmux
 
 # Install tpm if tpm does not exists
 [ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

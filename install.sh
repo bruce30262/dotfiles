@@ -7,14 +7,17 @@
 set -ex
 
 # update package info
-sudo apt-get -y update
+sudo apt -y update
+
+# install nala
+sudo apt install -y nala
 
 # install necessary tools
-sudo apt-get install -y stow \
+sudo nala install -y stow \
     gcc gdb \
-    python3 python-is-python3 python3-pip \
+    python3 python-is-python3 \
     openssh-server \
-    netcat net-tools \
+    net-tools \
     htop \
     tig \
     curl \
@@ -25,9 +28,10 @@ stow -t ~ --no-folding .
 
 # setup env
 pushd setup_scripts
-./setup_nvim.sh
 ./setup_zsh.sh
+./setup_nvim.sh
 ./setup_tmux.sh
+./setup_python.sh
 popd
 
 set +x
