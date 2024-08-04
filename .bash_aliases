@@ -9,6 +9,11 @@ alias duso="du -sh * | sort -rh | head -n "
 alias dus="du -sh"
 alias dfh="df -h"
 
+# Add /sbin in $PATH if it doesn't exist in $PATH
+if ! [[ ":$PATH:" == *":/sbin:"* ]] && [ -d "/sbin" ]; then
+    export PATH=$PATH:/sbin
+fi
+
 # tmux
 alias tmux="tmux -2" 
 
