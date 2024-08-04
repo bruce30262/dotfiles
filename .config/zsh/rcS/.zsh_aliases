@@ -1,6 +1,6 @@
 # for zsh 
 alias sni="sudo nala install"
-alias up="sudo nala upgrade && sudo nala autopurge && sudo nala clean"
+alias up="sudo nala upgrade --update --full --autoremove --purge && sudo nala clean"
 alias lrt="l -rt"
 alias mps="ps -eo pid,cmd,etime"
 alias mpsg="ps -eo pid,cmd,etime | grep"

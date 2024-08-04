@@ -1,6 +1,6 @@
 # copy this file into ~/.bash_aliases for bash aliases
 alias sni="sudo nala install"
-alias up="sudo nala upgrade && sudo nala autopurge && sudo nala clean"
+alias up="sudo nala upgrade --update --full --autoremove --purge && sudo nala clean"
 alias llh="ll -h"
 alias llrt="ll -rt"
 alias mps="ps -eo pid,cmd,etime"
