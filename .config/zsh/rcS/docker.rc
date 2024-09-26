@@ -1,0 +1,158 @@
+#############################################################################
+#                                                                           #
+#               ------- Useful Docker Aliases --------                      #
+#                                                                           #
+#     # Base on : https://gist.github.com/jgrodziski/9ed4a17709baad10dbcd4530b60dfcbb
+#     # Installation :                                                      #
+#     copy/paste these lines into your .bashrc or .zshrc file               #
+#                                                                           #
+#     # Usage:                                                              #
+#     dc              : docker compose                                      #
+#     dcd             : docker compose down                                 #
+#     dcm <command>   : docker commit <commit>                              #
+#     dcr             : docker compose run                                  #
+#     dcu             : docker compose up -d                                #
+#     ddf <container> : docker diff <container>                             #
+#     dex <container> : execute a bash shell inside the RUNNING <container> #
+#     di <container>  : docker inspect <container>                          #
+#     dim             : docker images                                       #
+#     din             : Do `docker info && ifconfig docker0`                #
+#     dip             : IP addresses of all running containers              #
+#     dl <container>  : docker logs -f <container>                          #
+#     dli <user>      : docker login -u <user>                              #
+#     dlo             : docker logout                                       #
+#     dnames          : names of all running containers                     #
+#     dp              : docker ps                                           #
+#     dpa             : docker ps -a                                        #
+#     dpl <command>   : docker pull <command>                               #
+#     dps <command>   : docker push <command>                               #
+#     drmc            : remove all exited containers                        #
+#     drmf <container>: force remove a container                            #
+#     drmi <image>    : remove image                                        #
+#     drmid           : remove all dangling images                          #
+#     drun <image>    : execute a bash shell in NEW container from <image>  #
+#     dsr <container> : stop then remove <container>                        #
+#     dst <command>   : docker stats <command>                              #
+#                                                                           #
+#############################################################################
+
+function dc-fn {
+        docker compose $*
+}
+
+function dcm-fn {
+	docker commit $@
+}
+
+function dcr-fn {
+	docker compose run $@
+}
+
+function ddf-fn {
+	docker diff $1
+}
+
+function dex-fn {
+	docker exec -it $1 ${2:-bash}
+}
+
+function di-fn {
+	docker inspect $1
+}
+
+function dip-fn {
+    echo "IP addresses of all named running containers"
+
+    for DOC in `dnames-fn`
+    do
+        IP=`docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}' "$DOC"`
+        OUT+=$DOC'\t'$IP'\n'
+    done
+    echo -e $OUT | column -t
+    unset OUT
+}
+
+function dl-fn {
+	docker logs -f $1
+}
+
+function dli-fn {
+	docker login -u $1
+}
+
+# in order to do things like dex $(dlab label) sh
+function dlab {
+       docker ps --filter="label=$1" --format="{{.ID}}"
+}
+
+function dnames-fn {
+	for ID in `docker ps | awk '{print $1}' | grep -v 'CONTAINER'`
+	do
+    	docker inspect $ID | grep Name | head -1 | awk '{print $2}' | sed 's/,//g' | sed 's%/%%g' | sed 's/"//g'
+	done
+}
+
+function dpl-fn {
+	docker pull $@
+}
+
+function dps-fn {
+	docker push $@
+}
+
+function drmc-fn {
+       docker rm $(docker ps --all -q -f status=exited)
+}
+
+function drmf-fn {
+       docker rm -f $1
+}
+
+function drmi-fn {
+    docker rmi $1
+}
+
+function drmid-fn {
+       imgs=$(docker images -q -f dangling=true)
+       [ ! -z "$imgs" ] && docker rmi "$imgs" || echo "no dangling images."
+}
+
+function drun-fn {
+	docker run -it $1 $2
+}
+
+function dsr-fn {
+	docker stop $1;docker rm $1
+}
+
+function dst-fn {
+	docker stats $@
+}
+
+alias dc=dc-fn
+alias dcm=dcm-fn
+alias dcu="docker compose up -d"
+alias dcd="docker compose down"
+alias dcr=dcr-fn
+alias ddf=ddf-fn
+alias dex=dex-fn
+alias di=di-fn
+alias dim="docker images"
+alias din="docker info && ifconfig docker0"
+alias dip=dip-fn
+alias dl=dl-fn
+alias dli=dli-fn
+alias dlo="docker logout"
+alias dnames=dnames-fn
+alias dp="docker ps"
+alias dpa="docker ps -a"
+alias dpl=dpl-fn
+alias dps=dps-fn
+alias drmc=drmc-fn
+alias drmf=drmf-fn
+alias drmi=drmi-fn
+alias drmid=drmid-fn
+alias drun=drun-fn
+alias dsp="docker system prune --all"
+alias dsr=dsr-fn
+alias dst=dst-fn
