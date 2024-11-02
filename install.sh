@@ -13,6 +13,7 @@ sudo apt -y update
 sudo apt install -y nala
 
 # install necessary tools
+sudo nala upgrade --full
 sudo nala install -y stow \
     gcc gdb \
     python3 python-is-python3 \
