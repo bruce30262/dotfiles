@@ -57,9 +57,22 @@ nnoremap <silent> <F5> :NERDTreeToggle<CR>
 nmap <F6> :set number! number?<cr>
 nmap <F7> gT
 nmap <F8> gt
-set pastetoggle=<F9>
+nnoremap <F9> :call TogglePaste()<CR>i
 nmap <silent> <F10> <esc>:set list! listchars=tab:>\ ,trail:-,eol:$<CR>
 imap <silent> <F10> <esc>:set list! listchars=tab:>\ ,trail:-,eol:$<CR>
+nnoremap <F12> gg=G
+inoremap <F12> <C-O>gg<C-O>=G
+" pastetoggle ( work in normal mode )
+function! TogglePaste()
+    if(&paste == 0)
+        set paste
+        echo "(paste)"
+    else
+        set nopaste
+        echo "(no paste)"
+    endif
+endfunction
+
 
 " Color & Theme Settings
 colorscheme nord
