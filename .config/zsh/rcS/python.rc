@@ -1,7 +1,35 @@
 # source this so uv can be found
 . "$HOME/.cargo/env"
 
+function sv() {
+    # if no argument given, activate .venv in the current directory
+    # otherwise activate $1/.venv
+    # after activate, set the ENV in tmux so a new panel can inherit the env    
+
+    if [ "$#" -gt 1 ]; then
+        echo "Illegal number of parameters, use \"sv\" or \"sv <directory contains .venv>\""
+        return
+    fi
+
+    VENV_PARENT=$PWD
+    if [ ! -z "$1" ]; then
+        VENV_PARENT=$1
+    fi
+
+    source $VENV_PARENT/.venv/bin/activate &&
+        tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+}
+
+function do_deactivate() {
+    # deactivate and unset the ENV
+    deactivate && tmux set-environment -u VIRTUAL_ENV
+}
+
+# In tmux, if $VIRTUAL_ENV exist, activate the venv
+if [ -n "$VIRTUAL_ENV" ]; then
+    source $VIRTUAL_ENV/bin/activate;
+fi
+
 # alias for entering/exiting uv default venv
-alias py="source ~/.venv/bin/activate"
-alias cpy="source .venv/bin/activate" # 'c' stands for " 'c'urrent directory "
-alias depy="deactivate"
+alias py="sv $HOME"
+alias depy="do_deactivate"
