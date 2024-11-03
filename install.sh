@@ -21,14 +21,14 @@ sudo nala install -y stow \
     net-tools \
     htop \
     tig \
-    curl \
-    fzf ripgrep fd-find
+    curl
 
 # stow dotfiles
 stow -t ~ --no-folding .
 
 # setup env
 pushd setup_scripts
+./setup_non_apt_package.sh
 ./setup_zsh.sh
 ./setup_nvim.sh
 ./setup_tmux.sh
