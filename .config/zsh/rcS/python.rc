@@ -3,4 +3,5 @@
 
 # alias for entering/exiting uv default venv
 alias py="source ~/.venv/bin/activate"
+alias cpy="source .venv/bin/activate" # 'c' stands for " 'c'urrent directory "
 alias depy="deactivate"
