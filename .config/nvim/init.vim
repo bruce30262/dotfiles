@@ -76,6 +76,8 @@ endfunction
 
 " Color & Theme Settings
 colorscheme nord
+highlight Comment ctermfg=darkgray
+
 "spell check color setting
 hi clear SpellBad
 hi SpellBad term=underline cterm=underline ctermfg=red
