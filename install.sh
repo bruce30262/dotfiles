@@ -21,7 +21,7 @@ sudo nala install -y stow \
     net-tools \
     htop \
     tig \
-    curl
+    curl wget
 
 # stow dotfiles
 stow -t ~ --no-folding .
