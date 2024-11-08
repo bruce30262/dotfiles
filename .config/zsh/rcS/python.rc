@@ -1,5 +1,7 @@
-# source this so uv can be found
-. "$HOME/.cargo/env"
+# Add $HOME/.local/bin in $PATH if it doesn't exist in $PATH
+if ! [[ ":$PATH:" == *":$HOME/.local/bin:"* ]] && [ -d "$HOME/.local/bin" ]; then
+    export PATH=$PATH:$HOME/.local/bin
+fi
 
 function sv() {
     # if no argument given, activate .venv in the current directory

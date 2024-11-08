@@ -12,7 +12,6 @@ sudo nala install -y curl python3
 
 # Install uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
-. "$HOME/.cargo/env"
 
 # Setup default venv
 cd ~/ && uv venv
