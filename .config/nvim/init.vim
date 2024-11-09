@@ -21,6 +21,8 @@ let g:snipMate = { 'override' : 1 }
 let g:snipMate = { 'snippet_version' : 1 }
 
 " General Settings
+" Copy to system clipboard
+set clipboard+=unnamedplus
 "Disable nvim changing cursor shape in Insert mode
 set guicursor=
 "tab and indent related settings
@@ -77,6 +79,9 @@ endfunction
 " Color & Theme Settings
 colorscheme nord
 highlight Comment ctermfg=darkgray
+if (has("termguicolors"))
+    set notermguicolors
+endif
 
 "spell check color setting
 hi clear SpellBad
