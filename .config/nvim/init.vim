@@ -2,7 +2,7 @@
 "vim-plug
 call plug#begin('~/.config/nvim/plugged')
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } "NerdTree. On-demand loading
-Plug 'arcticicestudio/nord-vim' "Nord Theme
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " Theme catppuccin
 Plug 'nvim-lualine/lualine.nvim' "lualine (for showing status line)
 "vim-snipmate plugins
 "snipmate depends on vim-addon-mw-utils & tlib_vim
@@ -75,13 +75,8 @@ function! TogglePaste()
     endif
 endfunction
 
-
 " Color & Theme Settings
-colorscheme nord
-highlight Comment ctermfg=darkgray
-if (has("termguicolors"))
-    set notermguicolors
-endif
+colorscheme catppuccin " catppuccin, catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 "spell check color setting
 hi clear SpellBad
