@@ -2,6 +2,8 @@
 
 # Should run stow before running this script
 
+TPM_PATH=~/.config/tmux/plugins/tpm 
+
 set -ex
 
 sudo nala update
@@ -10,7 +12,7 @@ sudo nala update
 sudo nala install -y tmux
 
 # Install tpm if tpm does not exists
-[ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+[ ! -d $TPM_PATH ] && git clone https://github.com/tmux-plugins/tpm $TPM_PATH
 
 set +x
 echo "Done !"
