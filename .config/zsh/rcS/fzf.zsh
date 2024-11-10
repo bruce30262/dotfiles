@@ -9,8 +9,6 @@ then
     source $FZF_RC_DIR/completion.zsh
     # https://www.youtube.com/watch?v=aLMepxvUj4s
     alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-    alias cdf='cd $(fd --type d --hidden | fzf)'
-    alias vimf='vim $(fzf)'
 else
     echo "Install fzf first."
 fi
