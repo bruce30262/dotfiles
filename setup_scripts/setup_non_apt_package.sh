@@ -1,6 +1,9 @@
 #!/bin/bash
 
-set -e
+usage() {
+    set +x
+    echo "Usage: (-h/--help|--fzf|--rg|--fd)"
+}
 
 # https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
 get_latest_release() {
@@ -26,15 +29,21 @@ download_and_dpkg_install() { # REPO, VERSION, FILENAME
 
 install_fzf() {
     set -x
+    # Remove it first if exist
+    if [ -f /usr/bin/fzf ]; then
+        sudo rm -f /usr/bin/fzf
+    fi
+    # Download repo and bin
     git clone https://github.com/junegunn/fzf
     fzf/install --bin
-    sudo install -v fzf/bin/fzf /bin
-    sudo install -v fzf/bin/fzf /usr/bin
+    # Install
+    sudo cp fzf/bin/fzf /usr/bin/
     mkdir -p $HOME/.config/fzf/
     cp fzf/shell/* $HOME/.config/fzf/
     rm -rf ./fzf
+
     set +x
-    echo "Done installing. To uninstall delete the file in /bin and /usr/bin with sudo, and remove $HOME/.config/fzf/ directory."
+    echo "Done installing. To uninstall delete /usr/bin/fzf with sudo, and remove $HOME/.config/fzf/ directory."
 }
 
 install_ripgrep() {
@@ -51,7 +60,38 @@ install_fd() {
     download_and_dpkg_install $REPO $VERSION $FILENAME
 }
 
-install_fzf
-install_ripgrep
-install_fd
+if (( $# == 0 ))
+then
+    usage
+    exit 1
+fi
 
+set -e
+
+while (( $# > 0 ))
+do
+    opt="$1"
+    shift
+    case $opt in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        --fzf)
+            install_fzf
+            ;;
+        --rg)
+            install_ripgrep
+            ;;
+        --fd)
+            install_fd
+            ;;
+        *) # default
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+set +x
+echo "All done."
