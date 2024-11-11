@@ -16,3 +16,6 @@ fi
 
 # tmux
 alias tmux="tmux -2" 
+
+# I made this error too many times
+alias gti="git"
