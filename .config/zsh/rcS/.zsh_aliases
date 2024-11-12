@@ -2,6 +2,7 @@
 alias sni="sudo nala install"
 alias up="sudo nala upgrade --update --full --autoremove --purge && sudo nala clean"
 alias lrt="l -rt"
+alias l="ls -al"
 alias mps="ps -eo pid,cmd,etime"
 alias mpsg="ps -eo pid,cmd,etime | grep"
 alias duso="du -sh .* * | sort -rh | head -n "
