@@ -21,8 +21,6 @@ let g:snipMate = { 'override' : 1 }
 let g:snipMate = { 'snippet_version' : 1 }
 
 " General Settings
-" Copy to system clipboard
-set clipboard+=unnamedplus
 "Disable nvim changing cursor shape in Insert mode
 set guicursor=
 "tab and indent related settings
@@ -33,10 +31,10 @@ syntax on
 set wildmenu wildmode=list:longest,full
 "utf-8 encoding ( http://vim.wikia.com/wiki/Working_with_Unicode )
 if has("multi_byte")
-  set encoding=utf-8
-  set termencoding=utf-8
-  setglobal fileencoding=utf-8
-  set fileencodings=ucs-bom,utf-8,latin1
+    set encoding=utf-8
+    set termencoding=utf-8
+    setglobal fileencoding=utf-8
+    set fileencodings=ucs-bom,utf-8,latin1
 endif
 "Misc
 set nu hls cursorline noswapfile splitbelow splitright sidescroll=1
@@ -53,27 +51,31 @@ set nu hls cursorline noswapfile splitbelow splitright sidescroll=1
 ":lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
 ":cmap  :cnoremap :cunmap    Command-line
 ":tmap  :tnoremap :tunmap    Terminal-Job
+
+" Function keys
 map <F2> :set spell!<CR><Bar>:echo "Spell check: " . strpart("OffOn", 3 * &spell, 3)<CR>
 imap <F2> <esc>:set spell!<CR><Bar>:echo "Spell check: " . strpart("OffOn", 3 * &spell, 3)<CR>
 nnoremap <silent> <F5> :NERDTreeToggle<CR>
 nmap <F6> :set number! number?<cr>
 nmap <F7> gT
 nmap <F8> gt
-nnoremap <F9> :call TogglePaste()<CR>i
 nmap <silent> <F10> <esc>:set list! listchars=tab:>\ ,trail:-,eol:$<CR>
 imap <silent> <F10> <esc>:set list! listchars=tab:>\ ,trail:-,eol:$<CR>
-nnoremap <F12> gg=G
-inoremap <F12> <C-O>gg<C-O>=G
-" pastetoggle ( work in normal mode )
-function! TogglePaste()
-    if(&paste == 0)
-        set paste
-        echo "(paste)"
-    else
-        set nopaste
-        echo "(no paste)"
-    endif
-endfunction
+nmap <F12> mtgg=G`th 
+imap <F12> <ESC><F12>
+
+" For copy/paste/cut from system clipboard
+map ,y "+y
+map ,yy "+yy
+map ,p "+p
+map ,P "+P
+map ,d "+d
+map ,dd "+dd
+map ,D "+D
+
+" Misc
+nnoremap ,s :w<CR>
+nnoremap ,, :so $MYVIMRC<CR>
 
 " Color & Theme Settings
 colorscheme catppuccin " catppuccin, catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
@@ -84,31 +86,23 @@ hi SpellBad term=underline cterm=underline ctermfg=red
 "lualine settings
 lua << END
 require('lualine').setup({
-  options = {
-    icons_enabled = true,
-    theme = "powerline",
-    globalstatus = false,
-    refresh = {
-      statusline = 500,
-      tabline = 500,
-      winbar = 500,
+    options = {
+        icons_enabled = true,
+        theme = "powerline",
+        globalstatus = false,
+        refresh = {
+            statusline = 500,
+            tabline = 500,
+            winbar = 500,
+        }
     }
-  }
 })
 END
 
 " Custom command Settings
-"pwning script for CTF
-command PPP execute ":0r ~/CTF-master/script/exp_template.py"
-"force write with sudo tee trick
-command ForceWrite execute ":w !sudo tee %"
-"Use :ww instead of ForceWrite
-cnoreabbrev ww ForceWrite
-":W == :w cause computer is too dumb to know I'm typing :w instead of :W
-command W execute ":w"
-command Wq execute ":wq"
-command Q execute ":q"
 "vim-plug shortcuts
 command! PU PlugUpdate | PlugUpgrade
 command! PI PlugInstall
+command! PC PlugClean
+
 
