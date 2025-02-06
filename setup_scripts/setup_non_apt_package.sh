@@ -2,7 +2,7 @@
 
 usage() {
     set +x
-    echo "Usage: (-h/--help|--fzf|--rg|--fd)"
+    echo "Usage: (-h/--help|--fzf|--rg|--fd|--btop)"
 }
 
 # https://gist.github.com/lukechilds/a83e1d7127b78fef38c2914c4ececc3c
@@ -60,6 +60,23 @@ install_fd() {
     download_and_dpkg_install $REPO $VERSION $FILENAME
 }
 
+install_btop() {
+    REPO=aristocratos/btop
+    VERSION=$(get_latest_release $REPO)
+    FILENAME=btop-x86_64-linux-musl.tbz
+    # Download latest release
+    rm -rf $FILENAME btop
+    download_release $REPO $VERSION $FILENAME
+    # Install
+    tar xf $FILENAME
+    pushd btop
+    ./uninstall.sh # uninstall first
+    ./install.sh
+    popd
+    # Clean up
+    rm -rf $FILENAME btop
+}
+
 if (( $# == 0 ))
 then
     usage
@@ -85,6 +102,9 @@ do
             ;;
         --fd)
             install_fd
+            ;;
+        --btop)
+            install_btop
             ;;
         *) # default
             usage
