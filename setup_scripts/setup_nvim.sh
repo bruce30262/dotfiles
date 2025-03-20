@@ -10,13 +10,14 @@ sudo nala update
 sudo nala install -y wget
 
 # Install neovim from latest github release
-if [ -d /opt/nvim-linux64 ]; then
-    sudo rm -rf /opt/nvim-linux64
+PKG_NAME=nvim-linux-x86_64
+if [ -d /opt/$PKG_NAME ]; then
+    sudo rm -rf /opt/$PKG_NAME
 fi
-wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-sudo tar xf nvim-linux64.tar.gz -C /opt/
-sudo ln -snf /opt/nvim-linux64/bin/nvim /usr/bin/nvim
-rm nvim-linux64.tar.gz
+wget https://github.com/neovim/neovim/releases/latest/download/$PKG_NAME.tar.gz
+sudo tar xf $PKG_NAME.tar.gz -C /opt/
+sudo ln -snf /opt/$PKG_NAME/bin/nvim /usr/bin/nvim
+rm $PKG_NAME.tar.gz
 
 # Install vim-plug
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
