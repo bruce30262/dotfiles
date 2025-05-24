@@ -9,7 +9,7 @@ alias pp=parseheap
 
 # misc setting for pwndbg
 alias offset=distance
-alias vh=vis_heap_chunks
+alias vh=vis-heap-chunks
 alias plk=probeleak
 alias bv=breakrva
 alias sr=stepret

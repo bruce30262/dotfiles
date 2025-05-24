@@ -31,7 +31,7 @@ setup_pwndbg() {
     then
         git clone https://github.com/pwndbg/pwndbg $DBGDIR/pwndbg
         pushd $DBGDIR/pwndbg
-        sudo ./setup.sh
+        ./setup.sh
         popd
     fi
 }
