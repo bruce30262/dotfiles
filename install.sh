@@ -15,7 +15,7 @@ sudo apt install -y nala
 # install necessary tools
 sudo nala upgrade --full
 sudo nala install -y stow \
-    gcc gdb \
+    gcc gdb make\
     python3 python-is-python3 \
     openssh-server \
     net-tools \
