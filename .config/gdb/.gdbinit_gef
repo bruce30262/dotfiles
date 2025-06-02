@@ -5,19 +5,6 @@ source ~/.config/gdb/Pwngdb/angelheap/gdbinit.py
 set history expansion on
 set print asm-demangle on
 
-# set solib-search-path base on binary's architecture
-define sss
-python
-arch = gdb.execute("show arch", to_string = True)
-if "aarch64" in arch:
-    gdb.execute("set solib-search-path /usr/aarch64-linux-gnu/lib")
-elif "arm" in arch:
-    gdb.execute("set solib-search-path /usr/arm-linux-gnueabihf/lib")
-end
-
-show solib-search-path
-end
-
 # target remote localhost, arg0 = port
 define trl
     target remote localhost:$arg0
@@ -100,19 +87,26 @@ class Base(gdb.Command):
     def __init__(self):
         super (Base, self).__init__ ("base", gdb.COMMAND_USER)
 
+    def find_libc_map(self, proc_map):
+        # Use more strict rule to find libc's address
+        possible_libc_name = ["libc-", "libc.so.6", "libc.so"]
+        for section in proc_map:
+            for name in possible_libc_name:
+                if name in section.path:
+                    gdb.execute("set $libc={}".format(section.page_start))
+                    return
+
     def invoke(self, args, from_tty):
         self.dont_repeat()
+        # find code base, heap base and libc base
         gdb.execute("set $code=$_base()")
         gdb.execute("set $heap=$_base(\"heap\")")
-        # Use more strict rule to find libc's address
-        proc_map = gef.memory.maps
-        for section in proc_map:
-            if "libc-" in section.path or "libc.so.6" in section.path:
-                gdb.execute("set $libc={}".format(section.page_start))
-                break 
+        self.find_libc_map(gef.memory.maps)
+        # show results
         print("$code = {}".format(gdb.parse_and_eval("$code")))
         print("$heap = {}".format(gdb.parse_and_eval("$heap")))
         print("$libc = {}".format(gdb.parse_and_eval("$libc")))
+        print("If can't find it, try $_base(\"<map name>\") to refine.")
         return
 Base()
 end
