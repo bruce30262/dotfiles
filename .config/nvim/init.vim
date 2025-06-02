@@ -32,7 +32,6 @@ set wildmenu wildmode=list:longest,full
 "utf-8 encoding ( http://vim.wikia.com/wiki/Working_with_Unicode )
 if has("multi_byte")
     set encoding=utf-8
-    set termencoding=utf-8
     setglobal fileencoding=utf-8
     set fileencodings=ucs-bom,utf-8,latin1
 endif
