@@ -61,6 +61,8 @@ install_fd() {
 }
 
 install_btop() {
+    # install bzip2 first
+    sudo apt install bzip2
     REPO=aristocratos/btop
     VERSION=$(get_latest_release $REPO)
     FILENAME=btop-x86_64-linux-musl.tbz
