@@ -14,4 +14,4 @@ sudo nala install -y curl python3
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Setup default venv
-cd ~/ && uv venv
+cd ~/ && $HOME/.local/bin/uv venv
