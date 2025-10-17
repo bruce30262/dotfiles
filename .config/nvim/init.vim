@@ -63,6 +63,10 @@ imap <silent> <F10> <esc>:set list! listchars=tab:>\ ,trail:-,eol:$<CR>
 nmap <F12> mtgg=G`th 
 imap <F12> <ESC><F12>
 
+" setup clipboard in Linux
+if has('unix')
+    let g:clipboard = 'xclip'
+endif
 " For copy/paste/cut from system clipboard
 map ,y "+y
 map ,yy "+yy
