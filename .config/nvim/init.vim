@@ -45,9 +45,9 @@ syntax on
 set wildmenu wildmode=list:longest,full
 "utf-8 encoding ( http://vim.wikia.com/wiki/Working_with_Unicode )
 if has("multi_byte")
-    set encoding=utf-8
-    setglobal fileencoding=utf-8
-    set fileencodings=ucs-bom,utf-8,latin1
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  set fileencodings=ucs-bom,utf-8,latin1
 endif
 "Misc
 set nu hls cursorline noswapfile splitbelow splitright sidescroll=1
@@ -119,16 +119,16 @@ hi SpellBad term=underline cterm=underline ctermfg=red
 "lualine settings
 lua << END
 require('lualine').setup({
-    options = {
-        icons_enabled = true,
-        theme = "powerline",
-        globalstatus = false,
-        refresh = {
-            statusline = 500,
-            tabline = 500,
-            winbar = 500,
-        }
+  options = {
+    icons_enabled = true,
+      theme = "powerline",
+      globalstatus = false,
+      refresh = {
+        statusline = 500,
+        tabline = 500,
+        winbar = 500,
     }
+  }
 })
 END
 
@@ -137,5 +137,4 @@ END
 command! PU PlugUpdate | PlugUpgrade
 command! PI PlugInstall
 command! PC PlugClean
-
 
