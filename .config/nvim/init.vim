@@ -94,8 +94,6 @@ if g:os ==# 'wsl'
   \   },
   \   'cache_enabled': 0,
   \ }
-elseif g:os ==# 'linux'
-  let g:clipboard = 'xclip'
 endif
 " Key mapping for copy/paste/cut from system clipboard
 map ,y "+y
