@@ -1,3 +1,17 @@
+" Detect environment
+if has('win32') || has('win64')
+  let g:os = 'windows'
+elseif has('unix')
+  let uname = join(readfile('/proc/version'), ' ')
+  if uname =~? 'Microsoft'
+    let g:os = 'wsl'
+  else
+    let g:os = 'linux'
+  endif
+else
+  let g:os = 'unknown'
+endif
+
 " Plugins Settings
 "vim-plug
 call plug#begin('~/.config/nvim/plugged')
@@ -63,11 +77,27 @@ imap <silent> <F10> <esc>:set list! listchars=tab:>\ ,trail:-,eol:$<CR>
 nmap <F12> mtgg=G`th 
 imap <F12> <ESC><F12>
 
-" setup clipboard in Linux
-if has('unix')
-    let g:clipboard = 'xclip'
+" Setup clipboard for Linux and WSL
+if g:os ==# 'wsl'
+  " For WSL use win32yank.exe
+  " `winget install win32yank`, then open a new WSL shell. Should detect
+  " win32yank.exe automatically.
+  let g:clipboard = {
+  \   'name': 'WslClipboard',
+  \   'copy': {
+  \      '+': ['win32yank.exe', '-i', '--crlf'],
+  \      '*': ['win32yank.exe', '-i', '--crlf'],
+  \   },
+  \   'paste': {
+  \      '+': ['win32yank.exe', '-o', '--lf'],
+  \      '*': ['win32yank.exe', '-o', '--lf'],
+  \   },
+  \   'cache_enabled': 0,
+  \ }
+elseif g:os ==# 'linux'
+  let g:clipboard = 'xclip'
 endif
-" For copy/paste/cut from system clipboard
+" Key mapping for copy/paste/cut from system clipboard
 map ,y "+y
 map ,yy "+yy
 map ,p "+p
