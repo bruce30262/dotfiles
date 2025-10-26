@@ -3,24 +3,89 @@ if ! [[ ":$PATH:" == *":$HOME/.local/bin:"* ]] && [ -d "$HOME/.local/bin" ]; the
     export PATH=$PATH:$HOME/.local/bin
 fi
 
+# -- sv ( Switch Virutal env ) --
 function sv() {
     # if no argument given, activate .venv in the current directory
     # otherwise activate $1/.venv
     # after activate, set the ENV in tmux so a new panel can inherit the env    
-
-    if [ "$#" -gt 1 ]; then
-        echo "Illegal number of parameters, use \"sv\" or \"sv <directory contains .venv>\""
+    if [ "$#" -eq 0 ]; then
+        if [ -d ".venv" ]; then
+            source ".venv/bin/activate" && tmux set-environment VIRTUAL_ENV "$VIRTUAL_ENV"
+            echo "Activated .venv in $PWD"
+        else
+            echo "No .venv found in $PWD"
+        fi
         return
     fi
 
-    VENV_PARENT=$PWD
-    if [ ! -z "$1" ]; then
-        VENV_PARENT=$1
+    if [ "$#" -gt 1 ]; then
+        echo "Usage: sv [directory-containing-.venv]"
+        return 1
     fi
 
-    source $VENV_PARENT/.venv/bin/activate &&
-        tmux set-environment VIRTUAL_ENV $VIRTUAL_ENV
+    local VENV_PARENT="$1"
+    if [ ! -d "$VENV_PARENT/.venv" ]; then
+        echo "No .venv found in $VENV_PARENT"
+        return 1
+    fi
+
+    source "$VENV_PARENT/.venv/bin/activate" && tmux set-environment VIRTUAL_ENV "$VIRTUAL_ENV"
+    echo "Activated venv from: $VENV_PARENT"
 }
+
+
+# --- fzf completion for sv ---
+_sv_fzf_complete() {
+    local prefix prefix_expanded search_root selected pattern
+
+    # get path from cmd
+    prefix=${LBUFFER#sv}
+    # strip space
+    prefix=${prefix## }
+
+    # expand ~、$PWD
+    eval "prefix_expanded=${prefix:-.}"
+
+    # if prefix_expanded is directory, make it search_root
+    if [[ -d "$prefix_expanded" ]]; then
+        search_root="$prefix_expanded"
+        pattern=""
+    else
+        # or esle take parent folder as search root
+        search_root=$(dirname "$prefix_expanded" 2>/dev/null)
+        [[ ! -d "$search_root" ]] && search_root="$PWD"
+        # basename as fuzzy search pattern
+        pattern=$(basename "$prefix_expanded")
+    fi
+
+    # search for directory that has .venv directory
+    # remove the last `.venv` from the result, then match the pattern
+    # pipe into fzf for selection
+    selected=$(fd -t d -H '.venv$' "$search_root" 2>/dev/null \
+        | sed 's|/.venv||' \
+        | rg -- "$pattern" \
+        | fzf --prompt="Select venv directory: " --height=40% --border ) || return 0
+
+
+    # update command line
+    LBUFFER="sv ${selected}"
+    zle redisplay
+}
+# register completion
+zle -N _sv_fzf_complete
+
+# --- Smart Tab key binding ---
+_sv_fzf_widget() {
+    # if command is sv, do completion
+    # or else do default tab action
+    if [[ $LBUFFER == sv* ]]; then
+        _sv_fzf_complete
+    else
+        zle expand-or-complete
+    fi
+}
+zle -N _sv_fzf_widget
+bindkey '^I' _sv_fzf_widget # ^I = Tab
 
 function do_deactivate() {
     # deactivate and unset the ENV
