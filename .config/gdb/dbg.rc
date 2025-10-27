@@ -1,0 +1,32 @@
+DBGDIR=~/.config/gdb
+alias gdb=$DBGDIR/gdb
+alias gdbp=$DBGDIR/gdbp
+alias gef=$DBGDIR/gef
+
+aslr() {
+    if [ -z $1 ]; then
+        cat /proc/sys/kernel/randomize_va_space
+    elif [ $1 = "on" ]; then
+        sudo sysctl -w kernel.randomize_va_space=2
+    elif [ $1 = "off" ]; then
+        sudo sysctl -w kernel.randomize_va_space=0
+    fi
+}
+
+ptrace() {
+    if [ -z $1 ]; then
+        cat /proc/sys/kernel/yama/ptrace_scope
+    elif [ $1 = "on" ]; then
+        sudo sysctl -w kernel.yama.ptrace_scope=1
+    elif [ $1 = "off" ]; then
+        sudo sysctl -w kernel.yama.ptrace_scope=0
+    fi
+}
+
+maps() {
+    if [ -z "$1" ]; then
+        echo "Usage: $FUNCNAME <proc name>"
+    else
+        cat /proc/$(pgrep -n $1)/maps
+    fi
+}

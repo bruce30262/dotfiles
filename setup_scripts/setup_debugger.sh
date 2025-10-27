@@ -75,8 +75,8 @@ do
     esac
 done
 
-# If we're here, means debugger has been set. Copy alias to rcS folder
-cp ~/dotfiles/.config/gdb/dbg.alias $ZDOTDIR/rcS
+# If we're here, means debugger has been set. Copy rc file to rcS folder
+cp ~/dotfiles/.config/gdb/dbg.rc $ZDOTDIR/rcS
 
 set +x
 echo "Done."

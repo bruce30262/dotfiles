@@ -1,4 +1,0 @@
-DBGDIR=~/.config/gdb
-alias gdb=$DBGDIR/gdb
-alias gdbp=$DBGDIR/gdbp
-alias gef=$DBGDIR/gef
