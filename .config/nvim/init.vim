@@ -18,21 +18,12 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } "NerdTree. On-demand loading
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' } " Theme catppuccin
 Plug 'nvim-lualine/lualine.nvim' "lualine (for showing status line)
-"vim-snipmate plugins
-"snipmate depends on vim-addon-mw-utils & tlib_vim
-"vim-snippets: vim-snipmate default snippets 
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
+Plug 'dcampos/nvim-snippy' " nvim snipmate plugin
+Plug 'honza/vim-snippets' " default snippets for snippy
 Plug 'bruce30262/vim-snippets-custom' "My own custom vim-snippets
 Plug 'Vimjas/vim-python-pep8-indent' "Python PEP8 indent
 Plug 'roxma/vim-tmux-clipboard' "Tmux vim clipboard
 call plug#end()
-"override with custom snippets
-let g:snipMate = { 'override' : 1 }
-"Eliminate SnipMate-deprecate warning message
-let g:snipMate = { 'snippet_version' : 1 }
 
 " General Settings
 "Disable nvim changing cursor shape in Insert mode
@@ -76,6 +67,13 @@ nmap <silent> <F10> <esc>:set list! listchars=tab:>\ ,trail:-,eol:$<CR>
 imap <silent> <F10> <esc>:set list! listchars=tab:>\ ,trail:-,eol:$<CR>
 nmap <F12> mtgg=G`th 
 imap <F12> <ESC><F12>
+
+" snippy
+imap <expr> <Tab> snippy#can_expand_or_advance() ? '<Plug>(snippy-expand-or-advance)' : '<Tab>'
+imap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<S-Tab>'
+smap <expr> <Tab> snippy#can_jump(1) ? '<Plug>(snippy-next)' : '<Tab>'
+smap <expr> <S-Tab> snippy#can_jump(-1) ? '<Plug>(snippy-previous)' : '<S-Tab>'
+xmap <Tab> <Plug>(snippy-cut-text)
 
 " Setup clipboard for Linux and WSL
 if g:os ==# 'wsl'
