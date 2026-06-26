@@ -156,3 +156,6 @@ setopt clobber
 
 bindkey '^F' kill-word 
 bindkey '^K' kill-line
+
+# fzf for zsh
+source <(fzf --zsh)
