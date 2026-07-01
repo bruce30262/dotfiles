@@ -27,7 +27,7 @@ stow -t ~ --no-folding .
 
 # setup env
 pushd setup_scripts
-./setup_non_apt_package.sh --fzf --rg --fd --btop
+./setup_non_apt_package.sh --fzf --rg --fd --bat --btop
 ./setup_zsh.sh
 ./setup_nvim.sh
 ./setup_tmux.sh

@@ -20,3 +20,8 @@ alias tmux="tmux -2"
 
 # I made this error too many times
 alias gti="git"
+
+# bb -> bat if bat command exist
+if (( ${+commands[bat]} )); then
+    alias bb="bat"
+fi

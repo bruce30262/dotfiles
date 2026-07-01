@@ -60,6 +60,13 @@ install_fd() {
     download_and_dpkg_install $REPO $VERSION $FILENAME
 }
 
+install_bat() {
+    REPO=sharkdp/bat
+    VERSION=$(get_latest_release $REPO)
+    FILENAME=bat_${VERSION:1}_amd64.deb
+    download_and_dpkg_install $REPO $VERSION $FILENAME
+}
+
 install_btop() {
     # install bzip2 first
     sudo apt install bzip2
@@ -104,6 +111,9 @@ do
             ;;
         --fd)
             install_fd
+            ;;
+        --bat)
+            install_bat
             ;;
         --btop)
             install_btop
