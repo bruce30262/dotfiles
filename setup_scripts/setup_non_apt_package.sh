@@ -72,7 +72,7 @@ install_btop() {
     sudo apt install bzip2
     REPO=aristocratos/btop
     VERSION=$(get_latest_release $REPO)
-    FILENAME=btop-x86_64-linux-musl.tbz
+    FILENAME=btop-x86_64-unknown-linux-musl.tar.gz
     # Download latest release
     rm -rf $FILENAME btop
     download_release $REPO $VERSION $FILENAME
