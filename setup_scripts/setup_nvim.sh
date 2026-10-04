@@ -30,5 +30,6 @@ nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 # Setup alias
 set -e
 ZDOTDIR=~/.config/zsh
-cp ~/dotfiles/.config/nvim/nvim.alias $ZDOTDIR/rcS
+ln -sf ~/dotfiles/.config/nvim/nvim.rc $ZDOTDIR/rcS
+rm ~/.config/nvim/nvim.rc # remove the one create by stow
 
