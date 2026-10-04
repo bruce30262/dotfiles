@@ -1,0 +1,24 @@
+[[mgr.prepend_keymap]]
+on = ["s", "z"]
+run = "plugin fd-fzf"
+desc = "Jump to directory"
+
+[[mgr.prepend_keymap]]
+on = ["s", "Z"]
+run = "plugin fd-fzf hidden"
+desc = "Jump to directory (hidden)"
+
+[[mgr.prepend_keymap]]
+on = ["s", "p"]
+run = "plugin fd-fzf preview"
+desc = "Jump to directory (preview)"
+
+[[mgr.prepend_keymap]]
+on = "Z"
+run = "plugin fd-fzf"
+desc = "Jump to directory"
+
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
